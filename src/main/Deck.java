@@ -32,6 +32,10 @@ public class Deck {
         // System.out.println(deck);
     }
 
+    public Card drawCard() {
+        return deck.remove(0);
+    }
+
     public static void main(String[] args) {
         Deck deck = new Deck();
         deck.buildDeck();

@@ -2,10 +2,15 @@ import java.util.ArrayList;
 
 public class Player {
     private Hand playerHand;
+    private String name;
+
+    public Player(String name) {
+        this.name = name;
+        playerHand = new Hand();
+    }
 
     public boolean hasThreeOfDiamonds(Hand playerHand) {
-
-        for (Card card : playerHand) {
+        for (Card card : playerHand.getHand()) {
             if (card.getValue() == 31) {
                 return true;
             }
@@ -13,8 +18,12 @@ public class Player {
         return false;
     }
 
-    public removeFromHand(ArrayList<Card> cards) {
+    public void removeFromHand(ArrayList<Card> cards) {
         playerHand.removeCards(cards);
+    }
+
+    public Hand getHand() {
+        return playerHand;
     }
 
 }
