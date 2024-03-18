@@ -1,43 +1,34 @@
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Stack;
 
 public class Deck {
-
-    private ArrayList<Card> deck;
+    private Stack<Card> cards;
 
     public Deck() {
-        deck = new ArrayList<>();
-        buildDeck();
-        shuffle();
+        this.cards = new Stack<>();
+        initializeDeck();
     }
 
-    private void buildDeck() {
-        deck.clear();
-        for (Card.Suit suit : Card.Suit.values()) {
-            for (Card.Value value : Card.Value.values()) {
-                deck.add(new Card(value, suit));
+    private void initializeDeck() {
+        char[] suits = {'d', 'c', 'h', 's'};
+        char[] ranks = {'3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A', '2'};
+        for (char suit : suits) {
+            for (char rank : ranks) {
+                cards.push(new Card(rank, suit));
             }
         }
     }
 
     public void shuffle() {
-        Collections.shuffle(deck);
+        Collections.shuffle(cards);
     }
 
-    public Card drawCard() {
-        if (!deck.isEmpty()) {
-            return deck.remove(0);
-        } else {
-            throw new IllegalStateException("Cannot draw from an empty deck.");
-        }
+    public Card deal() {
+        return cards.pop();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        for (Card card : deck) {
-            builder.append(card.toString()).append("\n");
-        }
-        return builder.toString();
+    public boolean isEmpty() {
+        return cards.isEmpty();
     }
 }
+

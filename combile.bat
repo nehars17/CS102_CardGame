@@ -1,0 +1,1 @@
+javac -d . bigtwo/*.java bigtwo/game/*.java bigtwo/players/*.java bigtwo/utils/*.java bigtwo/ui/*.java bigtwo/cards/*.java
