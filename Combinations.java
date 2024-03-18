@@ -7,14 +7,19 @@ import java.util.Map;
 public class Combinations extends Hand {
     private ArrayList<Card> cardList;
     private int numOfCards;
-    public Combinations(){}
+    public Combinations(){
+
+    }
     public Combinations(ArrayList<Card> hand) {
         this.cardList = hand;
         this.numOfCards = hand.size();
     }
 
-//    public abstract boolean isValid(ArrayList<Card> cardList);
-//    public abstract String getType();
+
+     public boolean isValid(ArrayList<Card> cardList){
+        return false;
+     }
+
 
     public Card getTopCard() {
         return cardList.get(0);
@@ -25,12 +30,11 @@ public class Combinations extends Hand {
     }
 
 
-    // Other methods...
 
     public static Map<Integer, Integer> getRankCount(ArrayList<Card> cardList) {
         Map<Integer, Integer> rankCount = new HashMap<>();
         for (Card card : cardList) {
-            int rank = card.getRank();
+            int rank = card.getRankVal();
             rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
         }
 
@@ -44,16 +48,16 @@ public class Combinations extends Hand {
             return true;
         }
 
-        else if (h1.size() != h2.size()) {
+        else if (h1.getHand().size() != h2.getHand().size()) {
             return false;
         }
 
         else {
-                for (int i = 0; i < h1.size(); i++) {
+                for (int i = 0; i < h1.getHand().size(); i++) {
                     Card card = h1.getHand().get(i);
                     Card card2 = h2.getHand().get(i);
-                    cardTotal1 += card.getRank();
-                    cardTotal2 += card2.getRank();
+                    cardTotal1 += card.getValue();
+                    cardTotal2 += card2.getValue();
 
 
                 }

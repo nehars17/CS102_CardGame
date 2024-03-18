@@ -1,53 +1,74 @@
-public class Card implements Comparable<Card> {
-    private int rank;
-    private char suit;
+// package main;
 
-    public Card(String rank, char suit) {
-        boolean isValid=false;
-        try{
-            this.rank = Integer.parseInt(rank);
-            isValid=true;
+import java.util.ArrayList;
 
-        } catch (NumberFormatException ignored ){
+public class Card {
+    String value;
+    String type;
+
+    Card(String value, String type) {
+        this.value = value;
+        this.type = type;
+    }
+    public String toString() {
+        return value + type;
+    }
+    public int getRankVal(){
+        if (value.equals("j")) {
+            value = "11";
+        }
+        if (value.equals("q")) {
+            value = "12";
+        }
+        if (value.equals("k")) {
+            value = "13";
+        }
+        if (value.equals("a")) {
+            value = "14";
+        }
+        if (value.equals("2")) {
+            value = "15";
         }
 
-        if (isValid==false){
-            switch (rank) {
-                case "T":
-                    this.rank = 10;
-                    break;
-                case "J":
-                    this.rank = 11;
-                    break;
-                case "Q":
-                    this.rank = 12;
-                    break;
-                case "K":
-                    this.rank = 13;
-                    break;
-                case "A":
-                    this.rank = 14;
-                    break;
-                default:
-                    this.rank = -1; // Invalid rank
-                    break;
-            }
+        return Integer.parseInt(value);
+    }
+    public String getType(){
+        return type;
+    }
+    public int getValue() {
+        if (value.equals("j")) {
+            value = "11";
         }
-            this.suit = suit;
+        if (value.equals("q")) {
+            value = "12";
+        }
+        if (value.equals("k")) {
+            value = "13";
+        }
+        if (value.equals("a")) {
+            value = "14";
+        }
+        if (value.equals("2")) {
+            value = "15";
         }
 
+        if (type.equals("d")) {
+            type = "1";
+        }
+        if (type.equals("c")) {
+            type = "2";
+        }
+        if (type.equals("h")) {
+            type = "3";
+        }
+        if (type.equals("s")) {
+            type = "4";
+        }
 
-    public int getRank() {
-        return rank;
+        return Integer.parseInt(value + type);
     }
 
-    public char getSuit() {
-        return suit;
-    }
-
-    @Override
-    public int compareTo(Card otherCard) {
-        return Integer.compare(this.rank, otherCard.rank);
+    public String getImagePath() {
+        return "./images/" + toString() + ".gif";
     }
 }
-

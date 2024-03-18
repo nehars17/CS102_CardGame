@@ -1,31 +1,42 @@
-// Hand.java
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Hand {
-    public ArrayList<Card> hand;
 
-    public Hand(){
+    private ArrayList<Card> hand;
+    private ArrayList<Card> littleHand;
 
-    }
-
-    public Hand(ArrayList<Card> hand) {
-        this.hand = hand;
+    public Hand() {
+        hand = new ArrayList<Card>();
     }
 
     public ArrayList<Card> getHand() {
         return hand;
     }
 
-    public void sort() {
-        Collections.sort(hand);
+    public void addCard(Card card) {
+        hand.add(card);
     }
 
-    public int size() {
-        return hand.size();
+    public void removeCards(ArrayList<Card> cards) {
+
     }
 
-    public Card getCard(int index) {
-        return hand.get(index);
+
+    public boolean hasCard(Card card) {
+        return hand.contains(card);
     }
+
+
+    public ArrayList<Card> selectCardsToPlay(ArrayList<Card> cards) {
+        //To be replaced with GUI later
+
+        System.out.println(cards);
+
+        return littleHand;
+    }
+//    public static void main(String[] args) {
+//
+//        System.out.println(hand);
+//    }
+
 }

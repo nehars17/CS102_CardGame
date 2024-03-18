@@ -4,7 +4,7 @@ import java.util.Map;
 public class Pair extends Combinations{
     private ArrayList<Card> CardList;
 
-    public boolean isPair(ArrayList<Card> CardList) {
+    public boolean isValid(ArrayList<Card> CardList) {
         this.CardList = CardList;
         Map<Integer, Integer> rankCount = super.getRankCount(CardList);
 
@@ -18,11 +18,11 @@ public class Pair extends Combinations{
         return false;
 
     }
-    public String toString(){
-        if(this.isPair(CardList)){
-            return "Pair";
-        }
-
-        return "Invalid";
-    }
+//    public String toString(){
+//        if(this.isValid(CardList)){
+//            return "Pair";
+//        }
+//
+//        return "Invalid";
+//    }
 }

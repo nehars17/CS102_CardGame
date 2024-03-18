@@ -119,6 +119,7 @@ public class CardHandValidator {
         boolean hasPair = false;
 
         for (int count : rankCount.values()) {
+            System.out.println(count);
             if (count == 3) {
                 hasThreeOfAKind = true;
             } else if (count == 2) {
