@@ -41,21 +41,21 @@ public class Combinations extends Hand {
         return rankCount;
     }
 
-    public boolean isGreaterThan(Hand h1, Hand h2) {
+    public boolean isGreaterThan(ArrayList<Card> h1, ArrayList<Card> h2) {
         int cardTotal1 = 0;
         int cardTotal2 = 0;
-        if (h1.getHand() == null && h2.getHand() == null) {
+        if (h1 == null && h2 == null) {
             return true;
         }
 
-        else if (h1.getHand().size() != h2.getHand().size()) {
+        else if (h1.size() != h2.size()) {
             return false;
         }
 
         else {
-                for (int i = 0; i < h1.getHand().size(); i++) {
-                    Card card = h1.getHand().get(i);
-                    Card card2 = h2.getHand().get(i);
+                for (int i = 0; i < h1.size(); i++) {
+                    Card card = h1.get(i);
+                    Card card2 = h2.get(i);
                     cardTotal1 += card.getValue();
                     cardTotal2 += card2.getValue();
 

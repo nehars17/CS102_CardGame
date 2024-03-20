@@ -66,7 +66,7 @@ public class CombinationTest {
 
 
 
-        System.out.println("Is Greater Than Card1: " + myCombinations.isGreaterThan(h1,h2));
+//        System.out.println("Is Greater Than Card1: " + myCombinations.isGreaterThan(h1,h2));
             }
         }
 
