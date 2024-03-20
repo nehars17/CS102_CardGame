@@ -1,5 +1,9 @@
+package players;
+
 import java.util.ArrayList;
 import java.util.Collections;
+
+import cards.Card;
 
 public class Hand {
     private ArrayList<Card> cardsInHand;

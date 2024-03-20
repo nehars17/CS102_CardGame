@@ -1,3 +1,5 @@
+package cards;
+
 public class Card {
     private final char suit;
     private final char rank;
@@ -7,6 +9,10 @@ public class Card {
         this.suit = suit;
         this.rank = rank;
         this.value = calculateValue(rank, suit);
+    }
+
+    public String getImagePath() {
+        return "./images/" + toString() + ".gif";
     }
 
     private int calculateValue(char rank, char suit) {

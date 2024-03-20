@@ -1,8 +1,14 @@
+package combinations;
+
+import cards.Card;
+
 import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import players.*;
 
 public class Combinations extends Hand {
     private ArrayList<Card> cardList;
@@ -34,7 +40,7 @@ public class Combinations extends Hand {
     public static Map<Integer, Integer> getRankCount(ArrayList<Card> cardList) {
         Map<Integer, Integer> rankCount = new HashMap<>();
         for (Card card : cardList) {
-            int rank = card.getRankVal();
+            int rank = card.getValue();
             rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
         }
 

@@ -1,4 +1,10 @@
+package game;
 import java.util.List;
+
+import cards.Card;
+import players.Player;
+import utils.DeckManager;
+import utils.ScoreKeeper;
 
 public class Game {
     private Player[] players;

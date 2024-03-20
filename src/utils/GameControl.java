@@ -1,14 +1,17 @@
+package utils;
+
+import game.Game;
+import players.Player;
+
 public class GameControl {
     private Player[] players;
     private DeckManager deckManager;
     private ScoreKeeper scoreKeeper;
-    private InputHandler inputHandler;
     private Game game;
 
     public GameControl() {
         deckManager = new DeckManager();
         scoreKeeper = new ScoreKeeper();
-        inputHandler = new InputHandler();
         players = new Player[4];
         for (int i = 0; i < players.length; i++) {
             players[i] = new Player("Player " + (i + 1));

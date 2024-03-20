@@ -1,4 +1,7 @@
+package combinations;
 import java.util.ArrayList;
+
+import cards.Card;
 
 public class Hand {
 

@@ -1,5 +1,10 @@
+package combinations;
+
+import cards.Card;
+
 import java.util.ArrayList;
 import java.util.Map;
+
 
 public class Single extends Combinations{
     private ArrayList<Card> CardList;

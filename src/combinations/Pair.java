@@ -1,5 +1,8 @@
+package combinations;
 import java.util.ArrayList;
 import java.util.Map;
+
+import cards.Card;
 
 public class Pair extends Combinations{
     private ArrayList<Card> CardList;

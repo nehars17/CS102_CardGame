@@ -1,5 +1,9 @@
+package utils;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import players.Player;
 
 public class ScoreKeeper {
     private Map<Player, Integer> scores;
@@ -21,5 +25,5 @@ public class ScoreKeeper {
     public int getScore(Player player) {
         return scores.getOrDefault(player, 0);
     }
-    
+
 }

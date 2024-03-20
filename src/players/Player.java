@@ -1,3 +1,7 @@
+package players;
+
+import cards.Card;
+import combinations.Hand;
 
 public class Player {
     private String name;

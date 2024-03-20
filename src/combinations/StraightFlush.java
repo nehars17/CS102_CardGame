@@ -1,3 +1,7 @@
+package combinations;
+
+import cards.Card;
+
 import java.util.ArrayList;
 
 public class StraightFlush extends Combinations {

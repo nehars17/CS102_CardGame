@@ -1,3 +1,8 @@
+package utils;
+
+import cards.Card;
+import cards.Deck;
+
 public class DeckManager {
     private Deck deck;
 
