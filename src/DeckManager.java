@@ -1,5 +1,3 @@
-
-
 public class DeckManager {
     private Deck deck;
 

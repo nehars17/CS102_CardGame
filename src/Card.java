@@ -42,7 +42,6 @@ public class Card {
         return value;
     }
 
-    // getRankValue 
     public char getRank() {
         return rank;
     }
