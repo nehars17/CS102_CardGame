@@ -7,12 +7,12 @@ import java.util.Map;
 public class CardHandValidator {
 
     public static void main(String[] args) {
-        String[] hand1 = { "7D", "7C", "QH", "10S", "6H" }; // Example one pair
-        String[] hand2 = { "5H", "6C", "7D", "8C", "9H" }; // Example straight
-        String[] hand3 = { "AH", "JH", "10H", "4H", "2H" }; // Example flush
-        String[] hand4 = { "KC", "KD", "KH", "9D", "9S" }; // Example full house
-        String[] hand5 = { "5D", "6D", "7D", "8D", "9D" }; // Example straight flush
-        String[] hand6 = { "5H", "5S", "5D", "5C", "QC" }; // Example four of a kind
+        String[] hand1 = { "7d", "7c", "qh", "10s", "6h" }; // Example one pair
+        String[] hand2 = { "5h", "6c", "7d", "8c", "9h" }; // Example straight
+        String[] hand3 = { "ah", "jh", "10h", "4h", "2h" }; // Example flush
+        String[] hand4 = { "kc", "kd", "kh", "9d", "9s" }; // Example full house
+        String[] hand5 = { "5d", "6d", "7d", "8d", "9d" }; // Example straight flush
+        String[] hand6 = { "5h", "5s", "5d", "5c", "qc" }; // Example four of a kind
 
         System.out.println("Hand 1 is a valid poker hand: " + isValidPokerHand(hand1));
         System.out.println("Hand 2 is a valid poker hand: " + isValidPokerHand(hand2));

@@ -1,7 +1,7 @@
 package utils;
 
 import Card;
-import cards.Deck;
+import Deck;
 
 public class DeckManager {
     private Deck deck;
