@@ -8,7 +8,7 @@ import cards.Card;
 public class Hand {
     private ArrayList<Card> cardsInHand;
     // gotta rename the littleHand
-    private ArrayList<Card> littleHand;
+    private ArrayList<Card> cardsToPlay;
 
 
     public Hand() {
@@ -36,7 +36,7 @@ public class Hand {
 
         System.out.println(cards);
         
-        return littleHand;
+        return cardsToPlay;
     }
 
     public void sortHand() {
