@@ -60,16 +60,16 @@ public class Hand {
         Collections.sort(cardsInHand, (card1, card2) -> Integer.compare(card1.getValue(), card2.getValue()));
     }
 
-    // public static void main(String[] args) {
-    //     Hand hand = new Hand();
-    //     hand.addCard(new Card('a', 'h'));
-    //     hand.addCard(new Card('2', 'h'));
-    //     hand.addCard(new Card('3', 'h'));
-    //     hand.addCard(new Card('4', 'h'));
-    //     hand.addCard(new Card('5', 'h'));
+    public static void main(String[] args) {
+        Hand hand = new Hand();
+        hand.addCard(new Card('a', 'h'));
+        hand.addCard(new Card('2', 'h'));
+        hand.addCard(new Card('3', 'h'));
+        hand.addCard(new Card('4', 'h'));
+        hand.addCard(new Card('5', 'h'));
+ 
+        ArrayList<Card> cardsToPlay = hand.selectCardsToPlay(hand.getCardsInHand());
 
-    //     ArrayList<Card> cardsToPlay = hand.selectCardsToPlay(hand.getCardsInHand());
-
-    //     System.out.println("Cards to play: " + cardsToPlay);
-    // }
+        System.out.println("Cards to play: " + cardsToPlay);
+    }
 }

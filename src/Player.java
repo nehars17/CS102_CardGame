@@ -2,6 +2,8 @@
 
 // import combinations.Hand;
 
+import java.util.ArrayList;
+
 public class Player {
     private String name;
     private Hand hand;
@@ -17,12 +19,14 @@ public class Player {
         hand.addCard(card);
     }
 
-    public boolean playCard(Card card) {
-        return hand.removeCard(card);
+    public void playCard(ArrayList<Card> cardsToPlay) {
+        for (Card card : cardsToPlay) {
+            hand.getCardsInHand().remove(card);
+        }
     }
 
-    public Hand getHand() {
-        return hand;
+    public ArrayList<Card> getCardsInHand() {
+        return hand.getCardsInHand();
     }
 
     public String getName() {
