@@ -1,7 +1,7 @@
 package game;
 import java.util.List;
 
-import cards.Card;
+import Card;
 import players.Player;
 import utils.DeckManager;
 import utils.ScoreKeeper;

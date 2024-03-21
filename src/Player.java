@@ -1,7 +1,6 @@
-package players;
+// package players;
 
-import cards.Card;
-import combinations.Hand;
+// import combinations.Hand;
 
 public class Player {
     private String name;

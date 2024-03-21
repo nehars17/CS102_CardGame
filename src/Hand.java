@@ -1,18 +1,19 @@
-package players;
+// package players;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import cards.Card;
-
 public class Hand {
     private ArrayList<Card> cardsInHand;
-    // gotta rename the littleHand
     private ArrayList<Card> cardsToPlay;
 
 
     public Hand() {
         this.cardsInHand = new ArrayList<>();
+    }
+
+    public ArrayList<Card> getCardsToPlay() {
+        return cardsToPlay;
     }
 
     public ArrayList<Card> getCardsInHand() {
@@ -32,7 +33,7 @@ public class Hand {
     }
 
     public ArrayList<Card> selectCardsToPlay(ArrayList<Card> cards) {
-        //To be replaced with GUI later
+        // To be replaced with GUI later
 
         System.out.println(cards);
         

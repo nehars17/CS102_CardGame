@@ -1,4 +1,5 @@
 package cards;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -6,13 +7,12 @@ import java.util.Map;
 public class CardHandValidator {
 
     public static void main(String[] args) {
-        String[] hand1 = {"7D", "7C", "QH", "10S", "6H"};  // Example one pair
-        String[] hand2 = {"5H", "6C", "7D", "8C", "9H"};  // Example straight
-        String[] hand3 = {"AH", "JH", "10H", "4H", "2H"};  // Example flush
-        String[] hand4 = {"KC", "KD", "KH", "9D", "9S"};  // Example full house
-        String[] hand5 = {"5D", "6D", "7D", "8D", "9D"};  // Example straight flush
-        String[] hand6 = {"5H", "5S", "5D", "5C", "QC"};  // Example four of a kind
-
+        String[] hand1 = { "7D", "7C", "QH", "10S", "6H" }; // Example one pair
+        String[] hand2 = { "5H", "6C", "7D", "8C", "9H" }; // Example straight
+        String[] hand3 = { "AH", "JH", "10H", "4H", "2H" }; // Example flush
+        String[] hand4 = { "KC", "KD", "KH", "9D", "9S" }; // Example full house
+        String[] hand5 = { "5D", "6D", "7D", "8D", "9D" }; // Example straight flush
+        String[] hand6 = { "5H", "5S", "5D", "5C", "QC" }; // Example four of a kind
 
         System.out.println("Hand 1 is a valid poker hand: " + isValidPokerHand(hand1));
         System.out.println("Hand 2 is a valid poker hand: " + isValidPokerHand(hand2));
@@ -31,16 +31,18 @@ public class CardHandValidator {
 
         Arrays.sort(hand);
 
-        if (isStraightFlush(hand) || isQuads(hand) || isFullHouse(hand) || isFlush(hand) || isStraight(hand) || isPair(hand) || isSingles(hand)) {
+        if (isStraightFlush(hand) || isQuads(hand) || isFullHouse(hand) || isFlush(hand) || isStraight(hand)
+                || isPair(hand) || isSingles(hand)) {
             return true;
         }
 
         System.out.println("Invalid hand: Not a valid poker hand.");
         return false;
     }
-// WORK ON THIS
+
+    // WORK ON THIS
     private static boolean isSingles(String[] hand) {
-        if(hand.length==1) {
+        if (hand.length == 1) {
             System.out.println("Singles!");
             return true;
         }
@@ -48,7 +50,7 @@ public class CardHandValidator {
     }
 
     private static boolean isPair(String[] hand) {
-        Map<Integer, Integer> rankCount = getRankCount(hand);
+        Map<Character, Integer> rankCount = getRankCount(hand);
 
         for (int count : rankCount.values()) {
             if (count == 2) {
@@ -61,15 +63,15 @@ public class CardHandValidator {
     }
 
     private static boolean isFlush(String[] hand) {
-        int i=1;
-        if(hand[0].length()>2) {
-            i=2;
+        int i = 1;
+        if (hand[0].length() > 2) {
+            i = 2;
         }
         char suit = hand[0].charAt(i);
 
         for (String card : hand) {
-            if(card.length()==2) {
-                i=1;
+            if (card.length() == 2) {
+                i = 1;
             }
 
             if (card.charAt(i) != suit) {
@@ -83,7 +85,7 @@ public class CardHandValidator {
     }
 
     private static boolean isQuads(String[] hand) {
-        Map<Integer, Integer> rankCount = getRankCount(hand);
+        Map<Character, Integer> rankCount = getRankCount(hand);
 
         for (int count : rankCount.values()) {
             if (count == 4) {
@@ -114,7 +116,7 @@ public class CardHandValidator {
     }
 
     private static boolean isFullHouse(String[] hand) {
-        Map<Integer, Integer> rankCount = getRankCount(hand);
+        Map<Character, Integer> rankCount = getRankCount(hand);
 
         boolean hasThreeOfAKind = false;
         boolean hasPair = false;
@@ -136,11 +138,11 @@ public class CardHandValidator {
         return false;
     }
 
-    private static Map<Integer, Integer> getRankCount(String[] hand) {
-        Map<Integer, Integer> rankCount = new HashMap<>();
+    private static Map<Character, Integer> getRankCount(String[] hand) {
+        Map<Character, Integer> rankCount = new HashMap<>();
 
         for (String card : hand) {
-            int rank = getRank(card);
+            char rank = getRank(card);
             rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
         }
 

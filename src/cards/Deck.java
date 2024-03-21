@@ -3,6 +3,8 @@ package cards;
 import java.util.Collections;
 import java.util.Stack;
 
+import Card;
+
 public class Deck {
     private Stack<Card> cards;
 

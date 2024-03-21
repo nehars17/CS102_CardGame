@@ -1,6 +1,6 @@
 package utils;
 
-import cards.Card;
+import Card;
 import cards.Deck;
 
 public class DeckManager {

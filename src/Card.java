@@ -1,4 +1,4 @@
-package cards;
+
 
 public class Card {
     private final char suit;
@@ -11,8 +11,13 @@ public class Card {
         this.value = calculateValue(rank, suit);
     }
 
+    @Override
+    public String toString() {
+        return rank + " of " + suit;
+    }
+
     public String getImagePath() {
-        return "./images/" + toString() + ".gif";
+        return "./images/" + rank + value + ".gif";
     }
 
     private int calculateValue(char rank, char suit) {
@@ -25,11 +30,11 @@ public class Card {
             case '7': rankValue = 7; break;
             case '8': rankValue = 8; break;
             case '9': rankValue = 9; break;
-            case 'T': rankValue = 10; break;
-            case 'J': rankValue = 11; break;
-            case 'Q': rankValue = 12; break;
-            case 'K': rankValue = 13; break;
-            case 'A': rankValue = 14; break;
+            case 't': rankValue = 10; break;
+            case 'j': rankValue = 11; break;
+            case 'q': rankValue = 12; break;
+            case 'k': rankValue = 13; break;
+            case 'a': rankValue = 14; break;
             case '2': rankValue = 15; break;
             default: throw new IllegalArgumentException("Invalid card rank");
         }
