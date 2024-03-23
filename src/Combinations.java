@@ -1,6 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +41,6 @@ public class Combinations {
             char rank = card.getRank();
             rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
         }
-
         return rankCount;
     }
 
@@ -53,145 +50,228 @@ public class Combinations {
             return false;
         }
 
-        if (sizeOfLastPlayedCards == 1) {
-            Single single = new Single();
-            if (single.isValid(cardsToPlay)) {
-                cardsToPlayType = "Single";
-                return true;
-            }
-        } else if (sizeOfLastPlayedCards == 2) {
-            Pair pair = new Pair();
-            if (pair.isValid(cardsToPlay)) {
-                cardsToPlayType = "Pair";
-                return true;
-            }
-        } else if (sizeOfLastPlayedCards == 5) {
-            Straight straight = new Straight();
-            if (straight.isValid(cardsToPlay)) {
-                cardsToPlayType = "Straight";
-                return true;
-            }
-            Flush flush = new Flush();
-            if (flush.isValid(cardsToPlay)) {
-                cardsToPlayType = "Flush";
-                return true;
-            }
-            FullHouse fullHouse = new FullHouse();
-            if (fullHouse.isValid(cardsToPlay)) {
-                cardsToPlayType = "Full House";
-                return true;
-            }
-            Quads quads = new Quads();
-            if (quads.isValid(cardsToPlay)) {
-                cardsToPlayType = "Quads";
-                return true;
-            }
-            StraightFlush straightFlush = new StraightFlush();
-            if (straightFlush.isValid(cardsToPlay)) {
-                cardsToPlayType = "Straight Flush";
-                return true;
-            }
+        cardsToPlayType = determineType(cardsToPlay);
+        String lastPlayedCardsType = determineType(lastPlayedCards);
+        if (!cardsToPlayType.equals(lastPlayedCardsType)) {
+            return false;
         }
-        return false;
+
+        return true;
     }
 
-    // public boolean checkCombinationIsGreaterThan(ArrayList<Card> cardsToPlay, ArrayList<Card> lastPlayedCards) {
-    //     if (lastPlayedCards.isEmpty()) {
-    //         return true;
-    //     }
-        
-        
+    public String determineType(ArrayList<Card> cards) {
+        int cardsSize = cards.size();
+        if (cardsSize == 1) {
+            Single single = new Single();
+            if (single.isValid(cards)) {
+                return "Single";
+            }
+        } else if (cardsSize == 2) {
+            Pair pair = new Pair();
+            if (pair.isValid(cards)) {
+                return "Pair";
+            }
+        } else if (cardsSize == 5) {
+            // swapped the order of checking, so that the combination assigned will be the highest possible
+            // eg. bc a straight flush will also be considered a straight,
+            // so cannot check for straight before we check for straightflush
+            StraightFlush straightFlush = new StraightFlush();
+            if (straightFlush.isValid(cards)) {
+                return "Straight Flush";
+            }
+            Quads quads = new Quads();
+            if (quads.isValid(cards)) {
+                return "Quads";
+            }
+            FullHouse fullHouse = new FullHouse();
+            if (fullHouse.isValid(cards)) {
+                return "Full House";
+            }
+            Flush flush = new Flush();
+            if (flush.isValid(cards)) {
+                return "Flush";
+            }
+            Straight straight = new Straight();
+            if (straight.isValid(cards)) {
+                return "Straight";
+            }
+        }
 
-    //     // Check combination type of previous
-        
-
-        
-    //     if (cardsToPlayType.equals("Straight")){
-
-    //     }
-    //     return false;
-    // }
+        return "Wrong";
+        // throw new IllegalArgumentException("Not a valid combination");
+    }
 
     public boolean checkCombinationIsGreaterThan(ArrayList<Card> cardsToPlay, ArrayList<Card> lastPlayedCards) {
         if (lastPlayedCards.isEmpty()) {
-            return true; 
+            return true;
         }
 
-        switch (cardsToPlayType) {
+        String lastPlayedCardsType = determineType(lastPlayedCards);
+        switch (lastPlayedCardsType) {
             case "Single":
                 return compareSingle(cardsToPlay, lastPlayedCards);
             case "Pair":
                 return comparePair(cardsToPlay, lastPlayedCards);
             case "Straight":
-                return compareStraight(cardsToPlay, lastPlayedCards);
-            // Add cases for Flush, Full House, Quads, and Straight Flush
+                // if both are straight, compare according to Straight rules, otherwise fall through
+                if (cardsToPlayType.equals(lastPlayedCardsType)) {
+                    return compareStraight(cardsToPlay, lastPlayedCards);
+                }
+            case "Flush":
+                if (cardsToPlayType.equals(lastPlayedCardsType)) {
+                    return compareFlush(cardsToPlay, lastPlayedCards);
+                }
+            case "Full House":
+                if (cardsToPlayType.equals(lastPlayedCardsType)) {
+                    return compareFiveCards(cardsToPlay, lastPlayedCards, 3);
+                }
+            case "Quads":
+                if (cardsToPlayType.equals(lastPlayedCardsType)) {
+                    return compareFiveCards(cardsToPlay, lastPlayedCards, 4);
+                }
+            case "Straight Flush":
+                return compareStraightFlush(cardsToPlay, lastPlayedCards);
             default:
                 return false;
         }
     }
-    
+
     private boolean compareSingle(ArrayList<Card> cardsToPlay, ArrayList<Card> lastPlayedCards) {
-        Card topCardToPlay = cardsToPlay.get(0);
-        Card lastPlayedTopCard = lastPlayedCards.get(0);
-        return topCardToPlay.compareTo(lastPlayedTopCard) > 0;
+        Card cardToPlay = cardsToPlay.get(0);
+        Card lastPlayedCard = lastPlayedCards.get(0);
+        return cardToPlay.compareTo(lastPlayedCard) > 0;
     }
-    
+
     private boolean comparePair(ArrayList<Card> cardsToPlay, ArrayList<Card> lastPlayedCards) {
-        // Pair comparison logic
-        // Assuming you have a way to compare the rank and then the suit if ranks are equal.
-        return compareByRankAndSuit(cardsToPlay, lastPlayedCards);
+        Card toPlay = cardsToPlay.get(0);
+        Card lastPlayed = lastPlayedCards.get(0);
+
+        // if the pairs have the same digit, compare suit
+        if (toPlay.getRank() == lastPlayed.getRank()) {
+            if (toPlay.getSuit() == 's' || cardsToPlay.get(1).getSuit() == 's') {
+                return true;
+            }
+        }
+
+        // if different digit, compare value
+        return toPlay.compareTo(lastPlayed) > 0;
     }
-    
+
     private boolean compareStraight(ArrayList<Card> cardsToPlay, ArrayList<Card> lastPlayedCards) {
-        // Straight comparison logic, comparing the smallest card in each straight.
-        Collections.sort(cardsToPlay); // Assuming Card implements Comparable and sorts by rank then suit.
-        Collections.sort(lastPlayedCards);
-        Card smallestCardToPlay = cardsToPlay.get(0);
-        Card lastPlayedSmallestCard = lastPlayedCards.get(0);
-        return smallestCardToPlay.compareTo(lastPlayedSmallestCard) > 0;
+        // only need to compare lowest card + lists are already sorted in gamecontrol
+        Card toPlay = cardsToPlay.get(0);
+        Card lastPlayed = lastPlayedCards.get(0);
+        return toPlay.compareTo(lastPlayed) > 0;
     }
-    
-    // You'll need to implement methods for Flush, Full House, Quads, and Straight Flush comparisons.
-    
 
-    // public Combinations determineCombinationType(ArrayList<Card> selectedCards, int sizeOfLastPlayedCombinations) {
-    //     // First, sort the cards by rank (and by suit if ranks are equal).
-    //     Collections.sort(selectedCards);
+    private boolean compareFlush(ArrayList<Card> cardsToPlay, ArrayList<Card> lastPlayedCards) {
+        Card toPlay = cardsToPlay.get(4);
+        Card lastPlayed = lastPlayedCards.get(4);
 
-    //     if (sizeOfLastPlayedCombinations == 1) {
-    //         Single single = new Single();
-    //         return single.isValid(selectedCards);
-    //     } else if (sizeOfLastPlayedCombinations == 2) {
-    //         return new Pair(selectedCards);
-    //     } else if (sizeOfLastPlayedCombinations == 3) {
-    //         return new ThreeOfAKind(selectedCards);
-    //     } else if (sizeOfLastPlayedCombinations == 4) {
-    //         return new FourOfAKind(selectedCards);
+        if (toPlay.getSuit() != lastPlayedCards.getSuit()) {
+            // all cards in flush have same suit,
+            // so make sure that suit of toPlay is larger than suit of lastPlayed
+            String order = "dhcs";
+            return order.indexOf(toPlay.getSuit() - lastPlayed.getSuit()) > 0;
+        }
+        // else if they have the same suit, then compare highcard
+        return toPlay.compareTo(lastPlayed) > 0;
+    }
+
+
+    // FOLLOWING TWO METHODS QUITE REPETITVE SO I JOINED THEM TGT UNDERNEATH INTO compareFiveCards(arraylist, arraylist, n)
+    // n is the number of same rank cards
+    // eg. fullhouse got three cards of same rank, n = 3
+    //     quads got four cards of same rank, n = 4
+
+    // private boolean compareFullHouse(ArrayList<Card> cardsToPlay, ArrayList<Card> lastPlayedCards) {
+    //     char toPlay = 'x';
+    //     char lastPlayed = 'x';
+
+    //     // full house made up of 3x same rank + 1x pair,
+    //     // get the rank of the 3x same rank of lastPlayed
+    //     Map<Character, Integer> lastPlayedRankCount = getRankCount(lastPlayedCards);
+    //     for (Map.Entry<Character, Integer> entry : lastPlayedRankCount.entrySet()) {
+    //         if (entry.getValue() == 3) {
+    //             lastPlayed = entry.getKey();
+    //         }
     //     }
 
-    //     // Now, determine the combination type
-    //     if (StraightFlush.isValid(selectedCards)) {
-    //         return new StraightFlush(selectedCards);
-    //     } else if (Quads.isValid(selectedCards)) {
-    //         return new Quads(selectedCards);
-    //     } else if (FullHouse.isValid(selectedCards)) {
-    //         return new FullHouse(selectedCards);
-    //     } else if (Flush.isValid(selectedCards)) {
-    //         return new Flush(selectedCards);
-    //     } else if (Straight.isValid(selectedCards)) {
-    //         return new Straight(selectedCards);
-    //     } else if (Pair.isValid(selectedCards)) {
-    //         return new Pair(selectedCards);
-    //     } else if (Single.isValid(selectedCards)) {
-    //         return new Single(selectedCards);
+    //     // get the rank of the 3x same rank of toPlay
+    //     Map<Character, Integer> toPlayRankCount = getRankCount(cardsToPlay);
+    //     for (Map.Entry<Character, Integer> entry : toPlayRankCount.entrySet()) {
+    //         if (entry.getValue() == 3) {
+    //             toPlay = entry.getKey();
+    //         }
     //     }
 
-    //     // If no valid combination is found, return null or throw a custom exception
-    //     throw new InvalidCombinationException("No valid combination found.");
+    //     // compare rank 
+    //     String order = "3456789tjqka2";
+    //     return order.indexOf(toPlay - lastPlayed) > 0;
     // }
 
-    // @Override
-    // public String toString() {
-    //     return  + " of " + suit;
+    // private boolean compareQuads(ArrayList<Card> cardsToPlay, ArrayList<Card> lastPlayedCards) {
+    //     char toPlay = 'x';
+    //     char lastPlayed = 'x';
+
+    //     // Quads made up of 4x same rank + random card
+    //     // get the rank of the 4x same rank of lastPlayed
+    //     Map<Character, Integer> lastPlayedRankCount = getRankCount(lastPlayedCards);
+    //     for (Map.Entry<Character, Integer> entry : lastPlayedRankCount.entrySet()) {
+    //         if (entry.getValue() == 4) {
+    //             lastPlayed = entry.getKey();
+    //         }
+    //     }
+
+    //     // get the rank of the 4x same rank of toPlay
+    //     Map<Character, Integer> toPlayRankCount = getRankCount(cardsToPlay);
+    //     for (Map.Entry<Character, Integer> entry : toPlayRankCount.entrySet()) {
+    //         if (entry.getValue() == 4) {
+    //             toPlay = entry.getKey();
+    //         }
+    //     }
+        
+    //     String order = "3456789tjqka2";
+    //     return order.indexOf(toPlay - lastPlayed) > 0;
     // }
+
+    private boolean compareFiveCards(ArrayList<Card> cardsToPlay, ArrayList<Card> lastPlayedCards, int n) {
+        char toPlay = 'x';
+        char lastPlayed = 'x';
+
+        // full house made up of 3x same rank + 1x pair,
+        // get the rank of the 3x same rank of lastPlayed
+        Map<Character, Integer> lastPlayedRankCount = getRankCount(lastPlayedCards);
+        for (Map.Entry<Character, Integer> entry : lastPlayedRankCount.entrySet()) {
+            if (entry.getValue() == n) {
+                lastPlayed = entry.getKey();
+            }
+        }
+
+        // get the rank of the 3x same rank of toPlay
+        Map<Character, Integer> toPlayRankCount = getRankCount(cardsToPlay);
+        for (Map.Entry<Character, Integer> entry : toPlayRankCount.entrySet()) {
+            if (entry.getValue() == n) {
+                toPlay = entry.getKey();
+            }
+        }
+
+        // compare rank 
+        String order = "3456789tjqka2";
+        return order.indexOf(toPlay - lastPlayed) > 0;
+    }
+
+    private boolean compareStraightFlush(ArrayList<Card> cardsToPlay, ArrayList<Card> lastPlayedCards) {
+        Card toPlay = cardsToPlay.get(0);
+        Card lastPlayed = lastPlayedCards.get(0);
+
+        // if lowest digit is the same, then check suit
+        if (toPlay.getRank() == lastPlayed.getRank()) {
+            String order = "dhcs";
+            return order.indexOf(toPlay.getSuit() - lastPlayed.getSuit()) > 0;
+        }
+        // else compare lowest cards
+        return toPlay.compareTo(lastPlayed) > 0;
+    }
+
 }
