@@ -16,7 +16,6 @@ public class Game {
         this.deckManager = deckManager;
         this.scoreKeeper = scoreKeeper;
         this.combinationsStack = new ArrayList<Card>();
-        // Initialize other game state variables
     }
 
     public void dealCards() {
@@ -39,7 +38,6 @@ public class Game {
 
     public void startRound(Player startingPlayer) {
         currentPlayer = startingPlayer;
-        // Possibly other setup for a round
     }
 
     public void showHand(Player player) {

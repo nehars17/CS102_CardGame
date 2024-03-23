@@ -7,12 +7,6 @@ public class Main {
     public static void main(String[] args) {
         Deck deck = new Deck();
         
-        ArrayList<Player> players = new ArrayList<>();
-        players.add(new Player("Alice"));
-        players.add(new Player("Bob"));
-        players.add(new Player("Charlie"));
-        players.add(new Player("Dana"));
-        
         GameControl gameControl = new GameControl();
         
         gameControl.startGame();
