@@ -1,5 +1,6 @@
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
+import java.util.ArrayList;
 
 public class GameControl {
     private Player[] players;
@@ -7,31 +8,40 @@ public class GameControl {
     private ScoreKeeper scoreKeeper;
     private Game game;
 
-    private GameScreen gameScreen;
-
     public GameControl() {
         deckManager = new DeckManager();
+
         scoreKeeper = new ScoreKeeper();
+        scoreKeeper.initializeScores(players);
+
         players = new Player[4];
         for (int i = 0; i < players.length; i++) {
             players[i] = new Player("Player " + (i + 1));
         }
-        scoreKeeper.initializeScores(players);
+        
         game = new Game(players, deckManager, scoreKeeper);
-
     }
 
     public Player startGame() {
         game.dealCards();
 
         Player startingPlayer = game.findStartingPlayer();
-        game.startRound(startingPlayer);
+        // game.startRound(startingPlayer);
         return startingPlayer;
     }
 
     public Player passTurn() {
         game.passTurn();
-        updateGUI();
+        return game.getCurrentPlayer();
+    }
+
+    public boolean isPlayable(ArrayList<Card> cardsToPlay) {
+        Combinations combinations = new Combinations(cardsToPlay);
+        Player currentPlayer = game.getCurrentPlayer();
+        if (!combinations.validateCards(cardsToPlay, game.getLastPlayedCards())) {
+            return false;
+        }
+        return combinations.checkCombinationIsGreaterThan(cardsToPlay, game.getLastPlayedCards());
     }
 
     public void play() {

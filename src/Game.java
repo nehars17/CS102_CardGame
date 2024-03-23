@@ -9,15 +9,33 @@ public class Game {
     private ScoreKeeper scoreKeeper;
     private Player currentPlayer;
     private int numberOfPasses;
-    private ArrayList<Card> combinationsStack; // Something to keep track of the last played combination
+    private ArrayList<Card> lastPlayedCards; 
+    private String lastPlayedCardsType;
 
     public Game(Player[] players, DeckManager deckManager, ScoreKeeper scoreKeeper) {
         this.players = players;
         this.deckManager = deckManager;
         this.scoreKeeper = scoreKeeper;
-        this.combinationsStack = new ArrayList<Card>();
+        this.lastPlayedCards = new ArrayList<Card>();
+        this.lastPlayedCardsType = "";
     }
 
+    public ArrayList<Card> getLastPlayedCards() {
+        return lastPlayedCards;
+    }
+    
+    public void setLastPlayedCards(ArrayList<Card> lastPlayedCards) {
+        this.lastPlayedCards = lastPlayedCards;
+    }
+
+    public String getLastPlayedCardsType() {
+        return lastPlayedCardsType;
+    }
+
+    public void setLastPlayedCardsType(String lastPlayedCardsType) {
+        this.lastPlayedCardsType = lastPlayedCardsType;
+    }
+    
     public void dealCards() {
         for (Player player : players) {
             for (int i = 0; i < 13; i++) {
@@ -25,24 +43,15 @@ public class Game {
             }
         }
     }
-
+    
     public Player findStartingPlayer() {
         for (Player player : players) {
             if (player.getCardsInHand().stream()
-                .anyMatch(card -> card.getRank() == '3' && card.getSuit() == 'd')) {
+            .anyMatch(card -> card.getRank() == '3' && card.getSuit() == 'd')) {
                 return player;
             }
         }
         throw new IllegalStateException("No player has the 3 of Diamonds.");
-    }
-
-    public void startRound(Player startingPlayer) {
-        currentPlayer = startingPlayer;
-    }
-
-    public void showHand(Player player) {
-        List<Card> hand = player.getCardsInHand();
-        System.out.println(player.getName() + "'s hand: " + hand);
     }
 
     private int getCurrentPlayerIndex() {
@@ -54,18 +63,27 @@ public class Game {
         throw new IllegalStateException("Current player is not in the players array.");
     }
 
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    // public void startRound(Player startingPlayer) {
+    //     currentPlayer = startingPlayer;
+    // }
+
     public void passTurn() {
+        this.numberOfPasses++;
         int currentIndex = getCurrentPlayerIndex();
         currentPlayer = players[(currentIndex + 1) % players.length];
-        this.numberOfPasses++;
+    }
+
+    public void showHand(Player player) {
+        List<Card> hand = player.getCardsInHand();
+        System.out.println(player.getName() + "'s hand: " + hand);
     }
 
     public int getNumberOfPasses() {
         return numberOfPasses;
-    }
-
-    public Player getCurrentPlayer() {
-        return currentPlayer;
     }
 
     public boolean isGameOver() {
