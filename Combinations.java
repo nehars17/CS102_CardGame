@@ -39,12 +39,10 @@ public class Combinations {
 
     public boolean validateCards(ArrayList<Card> cardsToPlay, ArrayList<Card> lastPlayedCards) {
         if (lastPlayedCards == null || lastPlayedCards.isEmpty()){
-            try {
-                determineType(cardsToPlay);
-            } catch (IllegalArgumentException e) {
+            String cardsToPlayType = determineType(cardsToPlay);
+            if (cardsToPlayType.equals("Invalid Combination")) {
                 return false;
             }
-            return true;
         }
     
         int sizeOfLastPlayedCards = lastPlayedCards.size();
@@ -99,8 +97,7 @@ public class Combinations {
             }
         }
 
-        System.out.println("Wrong");
-        throw new IllegalArgumentException("Not a valid combination");
+        return "Invalid Combination";
     }
 
     public boolean checkCombinationIsGreaterThan(ArrayList<Card> cardsToPlay, ArrayList<Card> lastPlayedCards) {

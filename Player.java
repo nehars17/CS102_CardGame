@@ -8,13 +8,11 @@ public class Player {
     private int playerId;
     private Hand hand;
     private int penaltyPoints;
-    private boolean hasPlayed;
 
     public Player(int playerId) {
         this.playerId = playerId;
         this.hand = new Hand();
         this.penaltyPoints = 0;
-        this.hasPlayed = false;
     }
 
     public void receiveCard(Card card) {
@@ -29,14 +27,6 @@ public class Player {
 
     public ArrayList<Card> getCardsInHand() {
         return hand.getCardsInHand();
-    }
-
-    public boolean hasPlayed() {
-        return hasPlayed;
-    }
-
-    public void setHasPlayed(boolean hasPlayed) {
-        this.hasPlayed = hasPlayed;
     }
 
     public int getPlayerId() {
