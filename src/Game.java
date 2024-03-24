@@ -1,4 +1,3 @@
-
 import java.util.List;
 import java.util.ArrayList;
 
@@ -10,31 +9,26 @@ public class Game {
     private Player currentPlayer;
     private int numberOfPasses;
     private ArrayList<Card> lastPlayedCards; 
-    private String lastPlayedCardsType;
 
     public Game(Player[] players, DeckManager deckManager, ScoreKeeper scoreKeeper) {
         this.players = players;
         this.deckManager = deckManager;
         this.scoreKeeper = scoreKeeper;
         this.lastPlayedCards = new ArrayList<Card>();
-        this.lastPlayedCardsType = "";
+    }
+
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    public void setLastPlayedCards(ArrayList<Card> lastPlayedCards) {
+        this.lastPlayedCards = lastPlayedCards;
     }
 
     public ArrayList<Card> getLastPlayedCards() {
         return lastPlayedCards;
     }
-    
-    public void setLastPlayedCards(ArrayList<Card> lastPlayedCards) {
-        this.lastPlayedCards = lastPlayedCards;
-    }
 
-    public String getLastPlayedCardsType() {
-        return lastPlayedCardsType;
-    }
-
-    public void setLastPlayedCardsType(String lastPlayedCardsType) {
-        this.lastPlayedCardsType = lastPlayedCardsType;
-    }
     
     public void dealCards() {
         for (Player player : players) {
@@ -71,15 +65,35 @@ public class Game {
     //     currentPlayer = startingPlayer;
     // }
 
+
     public void passTurn() {
         this.numberOfPasses++;
         int currentIndex = getCurrentPlayerIndex();
         currentPlayer = players[(currentIndex + 1) % players.length];
     }
 
+    public void removeCard(ArrayList<Card> cardsToPlay) {
+        for (Card card : cardsToPlay) {
+            currentPlayer.getCardsInHand().remove(card);
+        }
+    }
+
+    public void startNewRound() {
+        lastPlayedCards.clear();
+    }
+
     public void showHand(Player player) {
         List<Card> hand = player.getCardsInHand();
-        System.out.println(player.getName() + "'s hand: " + hand);
+        System.out.println(player.getPlayerId() + "'s hand: " + hand);
+    }
+
+    public boolean validateCardsToPlay(ArrayList<Card> cardsToPlay){
+        Combinations combinations = new Combinations(cardsToPlay);
+
+        if (!combinations.validateCards(cardsToPlay, lastPlayedCards)) {
+            return false;
+        }
+        return combinations.checkCombinationIsGreaterThan(cardsToPlay, lastPlayedCards);
     }
 
     public int getNumberOfPasses() {

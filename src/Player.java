@@ -5,12 +5,12 @@
 import java.util.ArrayList;
 
 public class Player {
-    private String name;
+    private int playerId;
     private Hand hand;
     private int penaltyPoints;
 
-    public Player(String name) {
-        this.name = name;
+    public Player(int playerId) {
+        this.playerId = playerId;
         this.hand = new Hand();
         this.penaltyPoints = 0;
     }
@@ -29,8 +29,8 @@ public class Player {
         return hand.getCardsInHand();
     }
 
-    public String getName() {
-        return name;
+    public int getPlayerId() {
+        return playerId;
     }
 
     public int getPenaltyPoints() {

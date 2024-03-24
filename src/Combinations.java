@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Combinations {
     private ArrayList<Card> cardList;
-    private String cardsToPlayType;
+
 
     public Combinations() {
 
@@ -27,13 +27,6 @@ public class Combinations {
         return cardList.size();
     }
 
-    public String getCardsToPlayType() {
-        return cardsToPlayType;
-    }
-
-    public void setCardsToPlayType(String cardsToPlayType) {
-        this.cardsToPlayType = cardsToPlayType;
-    }
 
     public static Map<Character, Integer> getRankCount(ArrayList<Card> cardList) {
         Map<Character, Integer> rankCount = new HashMap<>();
@@ -50,7 +43,7 @@ public class Combinations {
             return false;
         }
 
-        cardsToPlayType = determineType(cardsToPlay);
+        String cardsToPlayType = determineType(cardsToPlay);
         String lastPlayedCardsType = determineType(lastPlayedCards);
         if (!cardsToPlayType.equals(lastPlayedCardsType)) {
             return false;
@@ -107,6 +100,7 @@ public class Combinations {
         }
 
         String lastPlayedCardsType = determineType(lastPlayedCards);
+        String cardsToPlayType = determineType(cardsToPlay);
         switch (lastPlayedCardsType) {
             case "Single":
                 return compareSingle(cardsToPlay, lastPlayedCards);
@@ -168,7 +162,7 @@ public class Combinations {
         Card toPlay = cardsToPlay.get(4);
         Card lastPlayed = lastPlayedCards.get(4);
 
-        if (toPlay.getSuit() != lastPlayedCards.getSuit()) {
+        if (toPlay.getSuit() != lastPlayed.getSuit()) {
             // all cards in flush have same suit,
             // so make sure that suit of toPlay is larger than suit of lastPlayed
             String order = "dhcs";

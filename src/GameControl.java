@@ -1,6 +1,6 @@
-import javax.swing.Action;
-import javax.swing.SwingUtilities;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 public class GameControl {
     private Player[] players;
@@ -16,70 +16,55 @@ public class GameControl {
 
         players = new Player[4];
         for (int i = 0; i < players.length; i++) {
-            players[i] = new Player("Player " + (i + 1));
+            players[i] = new Player(i + 1);
         }
         
         game = new Game(players, deckManager, scoreKeeper);
     }
 
-    public Player startGame() {
+    public void startGame() {
         game.dealCards();
-
-        Player startingPlayer = game.findStartingPlayer();
-        // game.startRound(startingPlayer);
-        return startingPlayer;
+        game.setCurrentPlayer(game.findStartingPlayer());
     }
 
-    public Player passTurn() {
+    public int getCurrentPlayer() {
+        return game.getCurrentPlayer().getPlayerId();
+    }
+
+    public void playerPassTurn() {
         game.passTurn();
-        return game.getCurrentPlayer();
+        if (game.getNumberOfPasses() == 3) {
+            game.startNewRound();
+        }
+    }
+
+    public ArrayList<Card> getCurrrentPlayerHand(){
+        return game.getCurrentPlayer().getCardsInHand();
+    }
+
+    public Map<Integer, Integer> getSizeOfPlayersHand(){
+        Map<Integer, Integer> sizeOfPlayersHand = new HashMap<>();
+        for (Player player : players) {
+            sizeOfPlayersHand.put(player.getPlayerId(), player.getCardsInHand().size());
+        }
+        return sizeOfPlayersHand;
+    }   
+
+    public void updateHand(ArrayList<Card> cardsToRemove) {
+        game.removeCard(cardsToRemove);
+        game.setLastPlayedCards(cardsToRemove);
     }
 
     public boolean isPlayable(ArrayList<Card> cardsToPlay) {
-        Combinations combinations = new Combinations(cardsToPlay);
-        Player currentPlayer = game.getCurrentPlayer();
-        if (!combinations.validateCards(cardsToPlay, game.getLastPlayedCards())) {
-            return false;
-        }
-        return combinations.checkCombinationIsGreaterThan(cardsToPlay, game.getLastPlayedCards());
+        return game.validateCardsToPlay(cardsToPlay);
     }
 
-    public void play() {
-        boolean gameInProgress = true;
+    public ArrayList<Card> getPreviousPlayedCards(){
+        return game.getLastPlayedCards();
+    }
 
-        while (gameInProgress) {
-            Player currentPlayer = game.getCurrentPlayer();
-            game.showHand(currentPlayer); // This will eventually be replaced by GUI updates
-
-            // Get the player's action. This could be through GUI input in the future.
-            Action action = inputHandler.getPlayerAction(currentPlayer);
-
-            if (action.type == ActionType.PLAY) {
-                boolean success = game.attemptPlay(currentPlayer, action.cardsToPlay);
-                if (success) {
-                    // Update game state based on the successful play
-                    // For example, clearing the pass counter if needed
-                    game.updateStack(action.cardsToPlay);
-                } else {
-                    // Handle invalid play attempt (notify player, request another action)
-                }
-            } else if (action.type == ActionType.PASS) {
-                game.passTurn();
-                // Update GUI to reflect the pass
-                // Check if the pass causes control to change, etc.
-            }
-
-            // Check if the current player has won
-            if (game.isGameOver()) {
-                gameInProgress = false;
-                game.calculateFinalScores();
-                // Handle end of game, such as displaying final scores and determining if a new
-                // game starts
-            } else {
-                // Update the GUI with the new game state, such as the next player's turn
-                game.setToNextPlayer();
-            }
-        }
+    public boolean checkGameOver() {
+        return game.isGameOver();
     }
 
 }
