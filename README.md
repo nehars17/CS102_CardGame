@@ -37,10 +37,11 @@ Our team is developing a digital platform for playing Big2, providing a local mu
 
 ## How to Run:
 1. Compile the Java Code:  
-   Run compile.bat
+   Run `compile.bat`
+
 
 2. Run the Game:
-   Run run.bat 
+   Run `run.bat`
 
 ---
 ## Development Roadmap:
