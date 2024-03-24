@@ -76,6 +76,9 @@ public class Game {
         for (Card card : cardsToPlay) {
             currentPlayer.getCardsInHand().remove(card);
         }
+        int currentIndex = getCurrentPlayerIndex();
+        currentPlayer = players[(currentIndex + 1) % players.length];
+
     }
 
     public void startNewRound() {
