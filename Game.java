@@ -91,6 +91,7 @@ public class Game {
 
     public void startNewRound() {
         lastPlayedCards.clear();
+        numberOfPasses = 0;
     }
 
     public void showHand(Player player) {
