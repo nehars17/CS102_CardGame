@@ -20,6 +20,7 @@ public class SidePanel extends JPanel {
         this.setPreferredSize(new Dimension(panelWidth, panelHeight));
 
         rotatedLabel = new RotatedLabel("Player", rotationAngle);
+        rotatedLabel.setForeground(Color.WHITE);
         rotatedLabel.setFont(new Font("Roboto", Font.BOLD, 20));
 
         if (rotationAngle == 90){

@@ -15,7 +15,7 @@ public class BottomPanel extends JPanel {
     public BottomPanel(){
         this.setLayout(new BorderLayout());
         this.setBackground(emptyPanelColor);
-        this.trimPanel();
+        // this.trimPanel();
         this.addCardAreas();
 
         this.setBorder(BorderFactory.createEmptyBorder());

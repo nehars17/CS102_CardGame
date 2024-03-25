@@ -43,8 +43,6 @@ public class TopPanel extends JPanel {
 
         cardPanel.setBackground(new Color(hexColor));
 
-        playerLabel.setHorizontalTextPosition(JLabel.CENTER);
-
         // Add the player label to the middle panel
         middlePanel.add(playerLabel, BorderLayout.NORTH);
         middlePanel.add(cardPanel, BorderLayout.CENTER);
@@ -108,7 +106,8 @@ public class TopPanel extends JPanel {
     public void createPlayerLabel() {
         // Get the string consisting of the player number
         String display = "Player ";
-        playerLabel = new JLabel(display);
+        playerLabel = new JLabel(display,SwingConstants.CENTER);
+        playerLabel.setForeground(Color.WHITE);
         // Set the font and the size of the player label
         playerLabel.setFont(new Font("Roboto", Font.BOLD, 20));
     }
