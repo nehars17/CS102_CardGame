@@ -40,12 +40,18 @@ public class Game {
     
     public Player findStartingPlayer() {
         for (Player player : players) {
-            if (player.getCardsInHand().stream()
-            .anyMatch(card -> card.getRank() == '3' && card.getSuit() == 'd')) {
+            if (hasThreeOfDiamonds(player.getCardsInHand())) {
                 return player;
             }
         }
         throw new IllegalStateException("No player has the 3 of Diamonds.");
+    }
+
+    public boolean hasThreeOfDiamonds(ArrayList<Card> cardsInHand) {
+        if (cardsInHand.stream().anyMatch(card -> card.getRank() == '3' && card.getSuit() == 'd')) {
+            return true;
+        }
+        return false;
     }
 
     private int getCurrentPlayerIndex() {
@@ -64,6 +70,10 @@ public class Game {
     // public void startRound(Player startingPlayer) {
     //     currentPlayer = startingPlayer;
     // }
+
+    public boolean isNewRound() {
+        return lastPlayedCards.isEmpty();
+    }
 
     public void nextPlayer(){
         int currentIndex = getCurrentPlayerIndex();
@@ -85,6 +95,7 @@ public class Game {
 
     public void startNewRound() {
         lastPlayedCards.clear();
+        numberOfPasses = 0;
     }
 
     public void showHand(Player player) {
@@ -93,8 +104,14 @@ public class Game {
     }
 
     public boolean validateCardsToPlay(ArrayList<Card> cardsToPlay){
-        Combinations combinations = new Combinations(cardsToPlay);
+        if (hasThreeOfDiamonds(currentPlayer.getCardsInHand())) {
+            if (!hasThreeOfDiamonds(cardsToPlay)) {
+                return false;
+            }
+        }
 
+        Combinations combinations = new Combinations(cardsToPlay);
+        
         if (!combinations.validateCards(cardsToPlay, lastPlayedCards)) {
             return false;
         }

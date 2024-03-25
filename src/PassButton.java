@@ -18,6 +18,9 @@ public class PassButton extends JButton{
 
         this.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                if (gameControl.playerAllowedToPass() == false) {
+                    return;
+                }
                 gameControl.playerPassTurn();
                 // new WaitingScreen(gameScreen);
                 gameScreen.updateToNextPlayer();
