@@ -60,7 +60,7 @@ public class PlayButton extends JButton{
                         displayPanel.add(cardGraphic);
                     }
 
-                    game.goToNextPlayer();
+                    game.gotoNextPlayer();
                     gameFrame.updateToNextPlayer();
 
                     gameFrame.revalidate();

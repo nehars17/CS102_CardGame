@@ -76,7 +76,7 @@ public class GameControl {
         return game.isGameOver();
     }
 
-    public void goToNextPlayer(){
+    public void gotoNextPlayer(){
         game.nextPlayer();
     }
 
