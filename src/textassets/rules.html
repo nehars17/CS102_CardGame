@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Game Rules</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f0f8ff; /* soft blue background */
+        color: #34495e; /* dark blue text for better readability */
+        line-height: 1.6;
+        padding: 20px;
+        max-width: 800px;
+        margin: 40px auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+      h1,
+      h2 {
+        color: #2c3e50; /* slightly darker blue for headings */
+      }
+      h1 {
+        border-bottom: 2px solid #3498db; /* add a blue line under the main title */
+        padding-bottom: 10px;
+      }
+      h2 {
+        margin-top: 30px;
+      }
+      p,
+      li {
+        font-size: 16px;
+      }
+      ul {
+        margin: 10px 0 20px 20px; /* give some space around the lists */
+      }
+      .card,
+      .suit {
+        font-weight: bold;
+        color: #e74c3c; /* red color for emphasis */
+      }
+      .section {
+        background-color: #ffffff; /* white background for content sections */
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="section">
+      <h1>Dai Di Game Rules</h1>
+      <p>Objective: Be the first player to discard all your cards.</p>
+    </div>
+
+    <div class="section">
+      <h2>Card Ranking (Low to High)</h2>
+      <p class="card">3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A, 2</p>
+    </div>
+
+    <div class="section">
+      <h2>Suit Ranking (Low to High)</h2>
+      <p class="suit">Diamonds, Clubs, Hearts, Spades</p>
+    </div>
+
+    <div class="section">
+      <h2>Gameplay</h2>
+      <h3>Dealing</h3>
+      <p>
+        The dealer shuffles and deals 13 cards face down to each player, one at
+        a time, moving clockwise.
+      </p>
+
+      <br>
+
+      <h3>Starting the Play</h3>
+      <p>
+        The player with the 3 of Diamonds must start by playing it, either as a
+        single card or in a combination (explained below).
+      </p>
+
+      <br>
+
+      <h3>Playing a Round</h3>
+      <p>
+        Players take turns clockwise, trying to play a higher-valued combination
+        than the one played before. Here are the playable combinations:
+      </p>
+      <ul>
+        <li>Single Card: One card, higher than the previous single.</li>
+        <li>Pair: Two cards of the same rank (e.g., two 10s).</li>
+        <li>
+          Straight: Five consecutive cards of any suit (e.g., 3, 4, 5, 6, 7 of
+          mixed suits).
+        </li>
+        <li>Flush: Five cards of the same suit (e.g., all Diamonds).</li>
+        <li>
+          Full House: Three cards of the same rank and a pair (e.g., three Jacks
+          and two 5s).
+        </li>
+        <li>
+          Quads (Four of a kind): Four cards of the same rank (e.g., four
+          Queens).
+        </li>
+        <li>
+          Straight Flush: Five consecutive cards of the same suit (e.g., 10, J,
+          Q, K, A of Hearts).
+        </li>
+      </ul>
+
+      <br>
+
+      <h3>Passing</h3>
+      <p>
+        If a player cannot play a higher-valued combination, they can choose to
+        "pass".
+      </p>
+
+      <h3>The "3 Pass" Rule</h3>
+      <p>
+        If three consecutive players pass, the last player who played a valid
+        combination gains control. They can start a new round by playing any
+        valid combination of their choice.
+      </p>
+      
+      <br>
+
+      <h3>Winning the Round</h3>
+      <p>The first player to discard all their cards wins the round.</p>
+    </div>
+  </body>
+</html>
