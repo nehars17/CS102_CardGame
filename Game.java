@@ -71,6 +71,10 @@ public class Game {
     //     currentPlayer = startingPlayer;
     // }
 
+    public boolean isNewRound() {
+        return lastPlayedCards.isEmpty();
+    }
+
     public void nextPlayer(){
         int currentIndex = getCurrentPlayerIndex();
         currentPlayer = players[(currentIndex + 1) % players.length];
@@ -105,6 +109,7 @@ public class Game {
                 return false;
             }
         }
+
         Combinations combinations = new Combinations(cardsToPlay);
         
         if (!combinations.validateCards(cardsToPlay, lastPlayedCards)) {
