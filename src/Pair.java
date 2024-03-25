@@ -11,7 +11,6 @@ public class Pair extends Combinations {
 
         for (int count : rankCount.values()) {
             if (count == 2) {
-                System.out.println("Pair!");
                 return true;
             }
         }

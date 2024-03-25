@@ -10,7 +10,6 @@ public class Quads extends Combinations{
 
         for (int count : rankCount.values()) {
             if (count == 4) {
-                System.out.println("Quads!");
                 return true;
             }
         }

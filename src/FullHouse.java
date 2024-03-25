@@ -18,7 +18,6 @@ public class FullHouse extends Combinations {
                 hasPair = true;
             }
         }
-        System.out.println("Full House!");
         return hasThreeOfAKind && hasPair;
     }
 }

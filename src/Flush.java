@@ -16,7 +16,6 @@ public class Flush extends Combinations {
             }
         }
 
-        System.out.println("Flush!");
         return true;
     }
 }

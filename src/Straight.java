@@ -16,7 +16,6 @@ public class Straight extends Combinations {
             }
         }
 
-        System.out.println("Straight!");
         return true;
     }
 }
