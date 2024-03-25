@@ -33,11 +33,18 @@ public class GameControl {
         return game.getCurrentPlayer().getPlayerId();
     }
 
+    public boolean playerAllowedToPass() {
+        return game.getNumberOfPasses() < 3 && !game.isNewRound();
+    }
+
     public void playerPassTurn() {
-        game.passTurn();
+        if (playerAllowedToPass()) {
+            game.passTurn();
+        }
         if (game.getNumberOfPasses() == 3) {
             game.startNewRound();
         }
+
     }
 
     public ArrayList<Card> getCurrentPlayerHand(){

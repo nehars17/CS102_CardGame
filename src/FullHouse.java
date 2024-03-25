@@ -13,10 +13,12 @@ public class FullHouse extends Combinations {
         for (int count : rankCount.values()) {
             if (count == 3) {
                 hasThreeOfAKind = true;
-            } else if (count == 2) {
+            } 
+            if (count == 2) {
                 hasPair = true;
             }
         }
+        System.out.println("Full House!");
         return hasThreeOfAKind && hasPair;
     }
 }
