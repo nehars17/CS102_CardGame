@@ -55,13 +55,14 @@ Our team is developing a digital platform for playing Big2, providing a local mu
    - Developing GUI components using Java Swing.
    - Integrating player actions with the game engine.
 
-4. **Phase 4: Polish & Testing (Week 9-10)**
+4. **Phase 3: Polish & Testing (Week 9-10)**
    - Refining GUI design for better user experience.
    - Conducting testing for gameplay functionality.
    - Addressing any bugs or issues identified during testing.
 
-5. **Phase 5: Deployment (Week 11-12)**
+5. **Phase 4: Deployment (Week 11-12)**
    - Finalizing documentation and user guides.
+   - Finalizing GUI Components
    - Packaging the application.
 ---
 
