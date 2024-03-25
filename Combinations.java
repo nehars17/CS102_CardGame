@@ -6,7 +6,6 @@ import java.util.Map;
 public class Combinations {
     private ArrayList<Card> cardList;
 
-
     public Combinations() {
 
     }
@@ -27,7 +26,6 @@ public class Combinations {
         return cardList.size();
     }
 
-
     public static Map<Character, Integer> getRankCount(ArrayList<Card> cardList) {
         Map<Character, Integer> rankCount = new HashMap<>();
         for (Card card : cardList) {
@@ -38,7 +36,7 @@ public class Combinations {
     }
 
     public boolean validateCards(ArrayList<Card> cardsToPlay, ArrayList<Card> lastPlayedCards) {
-        if (lastPlayedCards == null || lastPlayedCards.isEmpty()){
+        if (lastPlayedCards == null || lastPlayedCards.isEmpty()) {
 
             String cardsToPlayType = determineType(cardsToPlay);
             if (cardsToPlayType.equals("Invalid Combination")) {
@@ -46,7 +44,7 @@ public class Combinations {
             }
             return true;
         }
-    
+
         int sizeOfLastPlayedCards = lastPlayedCards.size();
         if (cardsToPlay.size() != sizeOfLastPlayedCards) {
             return false;
@@ -74,7 +72,8 @@ public class Combinations {
                 return "Pair";
             }
         } else if (cardsSize == 5) {
-            // swapped the order of checking, so that the combination assigned will be the highest possible
+            // swapped the order of checking, so that the combination assigned will be the
+            // highest possible
             // eg. bc a straight flush will also be considered a straight,
             // so cannot check for straight before we check for straightflush
             StraightFlush straightFlush = new StraightFlush();
@@ -109,33 +108,59 @@ public class Combinations {
         }
 
         String lastPlayedCardsType = determineType(lastPlayedCards);
+        System.out.println(lastPlayedCardsType);
         String cardsToPlayType = determineType(cardsToPlay);
+        System.out.println(cardsToPlayType);
         switch (lastPlayedCardsType) {
             case "Single":
                 return compareSingle(cardsToPlay, lastPlayedCards);
             case "Pair":
                 return comparePair(cardsToPlay, lastPlayedCards);
             case "Straight":
-                // if both are straight, compare according to Straight rules, otherwise fall through
+                // if both are straight, compare according to Straight rules, otherwise fall
+                // through
                 if (cardsToPlayType.equals(lastPlayedCardsType)) {
                     return compareStraight(cardsToPlay, lastPlayedCards);
                 }
+                if (cardsToPlayType.equals("Flush")
+                    || cardsToPlayType.equals("Full House")
+                    || cardsToPlayType.equals("Quads")
+                    || cardsToPlayType.equals("Straight Flush")) {
+                    return true;
+                }
+                // break;
             case "Flush":
                 if (cardsToPlayType.equals(lastPlayedCardsType)) {
                     return compareFlush(cardsToPlay, lastPlayedCards);
                 }
+                if (cardsToPlayType.equals("Full House")
+                    || cardsToPlayType.equals("Quads")
+                    || cardsToPlayType.equals("Straight Flush")) {
+                    return true;
+                }
+                // break;
             case "Full House":
                 if (cardsToPlayType.equals(lastPlayedCardsType)) {
                     return compareFiveCards(cardsToPlay, lastPlayedCards, 3);
                 }
+                if (cardsToPlayType.equals("Quads")
+                    || cardsToPlayType.equals("Straight Flush")) {
+                    return true;
+                }
+                // break;
             case "Quads":
                 if (cardsToPlayType.equals(lastPlayedCardsType)) {
                     return compareFiveCards(cardsToPlay, lastPlayedCards, 4);
                 }
+                if (cardsToPlayType.equals("Straight Flush")) {
+                    return true;
+                }
+                // break;
             case "Straight Flush":
                 return compareStraightFlush(cardsToPlay, lastPlayedCards);
             default:
                 return false;
+
         }
     }
 
@@ -181,7 +206,6 @@ public class Combinations {
         return toPlay.compareTo(lastPlayed) > 0;
     }
 
-
     private boolean compareFiveCards(ArrayList<Card> cardsToPlay, ArrayList<Card> lastPlayedCards, int n) {
         char toPlay = 'x';
         char lastPlayed = 'x';
@@ -203,7 +227,7 @@ public class Combinations {
             }
         }
 
-        // compare rank 
+        // compare rank
         String order = "3456789tjqka2";
         return order.indexOf(toPlay - lastPlayed) > 0;
     }
