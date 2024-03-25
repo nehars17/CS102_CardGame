@@ -171,34 +171,30 @@ public class StartFrame extends JFrame {
         helpButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Create a JTextArea
-                JTextArea textArea = new JTextArea(5, 20);
-                textArea.setLineWrap(true);
-                textArea.setWrapStyleWord(true);
-                textArea.setEditable(false);
-
-                try (Scanner scanner = new Scanner(new File("textassets/rules.txt"))) {
-                    while (scanner.hasNextLine()) {
-                        String line = scanner.nextLine();
-                        textArea.append(line);
-                        textArea.append("\n");
-                    }
-                } catch (FileNotFoundException ex) {
+                // Create a JEditorPane
+                JEditorPane editorPane = new JEditorPane();
+                editorPane.setEditable(false); // Make it non-editable
+                editorPane.setContentType("text/html"); // Set content type as HTML
+        
+                // Read the HTML content from the file and set it to the JEditorPane
+                try {
+                    // Assuming rules.html is in the project directory
+                    File htmlFile = new File("textassets/rules.html");
+                    editorPane.setPage(htmlFile.toURI().toURL());
+                } catch (IOException ex) {
                     ex.printStackTrace();
+                    editorPane.setText("Failed to load the rules.");
                 }
-                // Set the caret position to the start of the text area
-                textArea.setCaretPosition(0);
-
-                // Create a JScrollPane and add the JTextArea to it
-                JScrollPane scrollPane = new JScrollPane(textArea);
-
-                // Set the preferred size of the scroll pane
-                scrollPane.setPreferredSize(new Dimension(500, 500));
-
+        
+                // Create a JScrollPane and add the JEditorPane to it
+                JScrollPane scrollPane = new JScrollPane(editorPane);
+                scrollPane.setPreferredSize(new Dimension(500, 500)); // Set preferred size
+        
                 // Show a message dialog with the JScrollPane
                 JOptionPane.showMessageDialog(StartFrame.this, scrollPane, "Game Rules", JOptionPane.INFORMATION_MESSAGE);
             }
         });
+        
     }
 
     // Create the panel for the start screen
