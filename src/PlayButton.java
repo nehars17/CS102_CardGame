@@ -47,7 +47,7 @@ public class PlayButton extends JButton{
                     game.updateHand(toPlayArea.getCards());
 
                     if (game.checkGameOver()){
-                        JOptionPane win = new WinningScreen(gameFrame); //generate winning window 
+                        new WinningScreen(gameFrame); //generate winning window JOptionPane win = 
                     }
 
                     // JOptionPane transitionScreen = new WaitingScreen(gameFrame);
