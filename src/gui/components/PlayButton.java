@@ -10,12 +10,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.ArrayList.*;
 
 public class PlayButton extends JButton {
 
-    private JFrame gameFrame;
-    private JPanel displayPanel;
     private final Color buttonColor = Color.WHITE;
     private final String assetPath = "images/playcards.jpg";
     private final int imageHeight = 70;
@@ -23,8 +20,6 @@ public class PlayButton extends JButton {
 
     public PlayButton(GameControl game, JPanel displayPanel, ToPlayArea toPlayArea, GameScreen gameFrame) {
 
-        this.gameFrame = gameFrame;
-        this.displayPanel = displayPanel;
         this.setText("Play");
         this.setFont(new Font("Roboto", Font.BOLD, 20));
         this.setForeground(Color.RED);
@@ -77,10 +72,7 @@ public class PlayButton extends JButton {
                     gameFrame.setVisible(true);
 
                 }
-
             }
         });
-
     }
-
 }

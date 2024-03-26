@@ -2,23 +2,18 @@ package gui.components;
 
 import model.cards.Card;
 
-import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class ClickableCard extends JButton {
 
     private Card card;
-    private JPanel curPanel;
     private JPanel toPanel;
-    private JFrame gameFrame;
 
     public ClickableCard(JFrame gameFrame, Card card, JPanel curPanel, JPanel targetPanel) {
 
         this.card = card;
-        this.curPanel = curPanel;
         this.toPanel = targetPanel;
-        this.gameFrame = gameFrame;
 
         JButton self = this;
 

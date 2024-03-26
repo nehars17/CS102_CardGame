@@ -40,6 +40,7 @@ public class BottomPanel extends JPanel {
         this.add(formatCardPanels, BorderLayout.CENTER);
     }
 
+    // might want to remove this method
     private void trimPanel() {
         this.add(createEmptyPanel(), BorderLayout.WEST);
         this.add(createEmptyPanel(), BorderLayout.EAST);

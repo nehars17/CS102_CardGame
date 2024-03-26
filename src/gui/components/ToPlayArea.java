@@ -4,9 +4,7 @@ import model.cards.Card;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.ArrayList.*;
 
 public class ToPlayArea extends JPanel {
     private final static int hexColor = 0x085318; // The color of the poker table
@@ -22,10 +20,8 @@ public class ToPlayArea extends JPanel {
         ArrayList<Card> cardsInPlayArea = new ArrayList<Card>();
 
         for (Component cardComp : this.getComponents()) {
-
             ClickableCard cardButton = (ClickableCard) cardComp;
             cardsInPlayArea.add(cardButton.getCard());
-
         }
 
         return cardsInPlayArea;

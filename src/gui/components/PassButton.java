@@ -10,8 +10,6 @@ import javax.swing.*;
 
 public class PassButton extends JButton {
 
-    private JFrame gameFrame;
-
     private final Color buttonColor = Color.WHITE;
     private final String assetPath = "images/pass.png";
     private final int imageHeight = 70;
