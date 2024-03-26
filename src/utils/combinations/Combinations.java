@@ -53,12 +53,6 @@ public class Combinations {
             return false;
         }
 
-        String cardsToPlayType = determineType(cardsToPlay);
-        String lastPlayedCardsType = determineType(lastPlayedCards);
-        if (!cardsToPlayType.equals(lastPlayedCardsType)) {
-            return false;
-        }
-
         return true;
     }
 
@@ -113,15 +107,12 @@ public class Combinations {
             case "Pair":
                 return comparePair(cardsToPlay, lastPlayedCards);
             case "Straight":
-                // if both are straight, compare according to Straight rules, otherwise fall
-                // through
                 if (cardsToPlayType.equals(lastPlayedCardsType)) {
                     return compareStraight(cardsToPlay, lastPlayedCards);
                 }
                 if (compareCombiStrength(cardsToPlayType, lastPlayedCardsType)) {
                     return true;
                 }
-                // break;
             case "Flush":
                 if (cardsToPlayType.equals(lastPlayedCardsType)) {
                     return compareFlush(cardsToPlay, lastPlayedCards);
@@ -129,7 +120,6 @@ public class Combinations {
                 if (compareCombiStrength(cardsToPlayType, lastPlayedCardsType)) {
                     return true;
                 }
-                // break;
             case "Full House":
                 if (cardsToPlayType.equals(lastPlayedCardsType)) {
                     return compareFiveCards(cardsToPlay, lastPlayedCards, 3);
@@ -137,7 +127,6 @@ public class Combinations {
                 if (compareCombiStrength(cardsToPlayType, lastPlayedCardsType)) {
                     return true;
                 }
-                // break;
             case "Quads":
                 if (cardsToPlayType.equals(lastPlayedCardsType)) {
                     return compareFiveCards(cardsToPlay, lastPlayedCards, 4);
@@ -145,7 +134,6 @@ public class Combinations {
                 if (compareCombiStrength(cardsToPlayType, lastPlayedCardsType)) {
                     return true;
                 }
-                // break;
             case "Straight Flush":
                 if (cardsToPlayType.equals(lastPlayedCardsType)) {
                     return compareStraightFlush(cardsToPlay, lastPlayedCards);
