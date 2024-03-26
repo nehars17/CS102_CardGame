@@ -13,7 +13,7 @@
 
 ---
 ## Project Description:
-This project aims to implement a digital version of the popular card game Big2, also known as Deuces or Chinese Poker. Big2 is a shedding-type card game where the goal is to be the first to get rid of all of your cards. 
+- This project aims to implement a digital version of the popular card game Big2, also known as Deuces or Chinese Poker. Big2 is a shedding-type card game where the goal is to be the first to get rid of all of your cards. 
 ---
 
 ## Technologies Used:
@@ -40,7 +40,7 @@ Our team is developing a digital platform for playing Big2, providing a local mu
    Run `compile.bat`
 
 
-2. Run the Game:
+2. Run the Game: \
    Run `run.bat`
 
 ---
@@ -67,7 +67,7 @@ Our team is developing a digital platform for playing Big2, providing a local mu
 ---
 
 ## Communication Channels:
-- **Zoom**: We use Zoom for day-to-day communication, sharing updates, and discussing any issues or blockers.
+- **Zoom**: We used Zoom and Telegram for day-to-day communication, sharing updates, and discussing any issues or blockers.
 - **GitHub**: Our project repository on GitHub serves as a central hub for code collaboration, issue tracking, and version control.
 
 ---
