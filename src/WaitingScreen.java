@@ -7,21 +7,30 @@ public class WaitingScreen extends JOptionPane {
     private final static int windowWidth = 800;            
     private final static int borderWidth = 100;      
     private final static int borderHeight = 100;
+    private final static int hexColor = 0x085318; // The color of the poker table  
     
     // Constructor for the winning Screen
     public WaitingScreen(JFrame frame) {
         // Create a panel to blur out the parent frame
         JPanel blurPanel = new JPanel();
-        blurPanel.setBackground(new Color(0, 0, 0, 200)); // Semi-transparent black
+        blurPanel.setBackground(new Color(hexColor)); // Make the blur panel the same colour as the main frame
 
-        // Set the size and location of the blur panel
+        Dimension blurDimension = new BottomPanel().getPlayingAreaSize();
+        blurPanel.setPreferredSize(blurDimension);
+
+        // Create a JPanel with border layout to hold the blur panel
+        JPanel panel = new JPanel(new BorderLayout());
+        // Add the blur panel to the south area
+        panel.add(blurPanel, BorderLayout.SOUTH);
         // The parameters are as such: x, y (position of the panel), width, height (size of the panel)
+        panel.setBounds(0, frame.getHeight() - blurPanel.getPreferredSize().height, frame.getWidth(), blurPanel.getPreferredSize().height);
 
-
-        blurPanel.setBounds(0 , 560, windowWidth*2, borderHeight + 100);
+        // frame.add(blurPanel, BorderLayout.SOUTH);
 
         // Add the blur panel to the parent frame's layered pane such that it appears right on top of the pane
-        frame.getLayeredPane().add(blurPanel, JLayeredPane.PALETTE_LAYER);
+        frame.getLayeredPane().add(panel, JLayeredPane.PALETTE_LAYER);
+        frame.validate();
+        frame.repaint();
 
         // String array to store the options for the optionpane
         String[] options = {"Ready", "Quit"};
@@ -40,7 +49,7 @@ public class WaitingScreen extends JOptionPane {
         if (choice == JOptionPane.YES_OPTION) {
             // Continue with the game
             // Remove the layeredPane of the blur panel
-            frame.getLayeredPane().remove(blurPanel);
+            frame.getLayeredPane().remove(panel);
             frame.revalidate();
             frame.repaint();
         } else {
