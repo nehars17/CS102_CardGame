@@ -57,7 +57,10 @@ public class BottomPanel extends JPanel {
         return handArea;
     }
 
-    
+    // Getter method to get the Dimensions of both the play area and the hand area
+    public Dimension getPlayingAreaSize() {
+        return emptyPanelDimensions;
+    }
 
 }
 
