@@ -38,7 +38,7 @@ public class Game {
 
     public void sortHand(Player player) {
         if (player != null && player.getCardsInHand() != null) {
-            player.getCardsInHand().sort(null); // This uses the natural ordering of Card.
+            player.getCardsInHand().sort(null);
         } else {
             System.err.println("Player or player's hand is null.");
         }
