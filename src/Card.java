@@ -1,3 +1,4 @@
+import java.util.Objects;
 
 public class Card implements Comparable<Card> {
     private final char suit;
@@ -22,7 +23,7 @@ public class Card implements Comparable<Card> {
 
     public String getImagePath() {
         return "./cardassets/" + rank + suit + ".gif";
-        
+
     }
 
     private int calculateValue(char rank, char suit) {
@@ -101,4 +102,5 @@ public class Card implements Comparable<Card> {
     public char getSuit() {
         return suit;
     }
+
 }

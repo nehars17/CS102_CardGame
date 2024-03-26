@@ -1,0 +1,44 @@
+﻿Game rules:
+Objective: Be the first player to discard all your cards.
+
+
+Card Ranking (Low to High):
+3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A, 2
+
+
+Suit Ranking (Low to High):
+Diamonds -> Clubs -> Hearts -> Spades 
+
+
+Gameplay:
+
+
+1. Dealing: The dealer shuffles and deals 13 cards face down to each player, one at a time, moving clockwise.
+
+
+2. Starting the Play: The player with the 3 of Diamonds must start by playing it, either as a single card or in a combination (explained below). 
+
+
+3. Playing a Round: Players take turns clockwise, trying to play a higher-valued combination than the one played before. Here are the playable combinations:
+   1. Single Card: One card, higher than the previous single
+   2. Pair: Two cards of the same rank (e.g., two 10s)
+   3. Straight: Five consecutive cards of any suit (e.g., 3, 4, 5, 6, 7 of mixed suits) 
+   4. Flush: Five cards of the same suit (e.g., all Diamonds). 
+   5. Full House: Three cards of the same rank and a pair (e.g., three Jacks and two 5s).
+   6. Quads (Four of a kind): Four cards of the same rank (e.g., four Queens).
+   7. Straight Flush: Five consecutive cards of the same suit (e.g., 10, J, Q, K, A of Hearts).
+
+
+4. Passing: If a player cannot play a higher-valued combination, they can choose to "pass".
+
+
+5. The "3 Pass" Rule:  If three consecutive players pass, the last player who played a valid combination gains control. They can start a new round by playing any valid combination of their choice.
+
+
+6. Winning the Round: The first player to discard all their cards wins the round.
+
+
+7. Scoring: The players other than the winner score penalty points for the cards remaining in their hands. The penalty is one point per card in your hand if you have 9 cards or fewer, two points per card if you have 10, 11 or 12 cards, and three points per card (i.e. 39 points) if you have all 13 of your cards left at the end, because you never played any cards at all. The winner, having no cards, gets no penalty points for the hand.
+
+
+8. New starting player: The winner of the previous game will start the next round

@@ -68,6 +68,7 @@ public class GameControl {
     }
 
     public boolean checkGameOver() {
+        System.out.println("Game Over: " + game.isGameOver());
         return game.isGameOver();
     }
 

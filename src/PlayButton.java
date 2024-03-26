@@ -37,16 +37,15 @@ public class PlayButton extends JButton{
 
                 
                 if ( game.isPlayable(toPlayArea.getCards()) ){
+                    // JOptionPane transitionScreen = new WaitingScreen(gameFrame);
+
+                    game.updateHand(toPlayArea.getCards());
 
                     if (game.checkGameOver()){
                         JOptionPane win = new WinningScreen(gameFrame); //generate winning window 
                     }else{
                         new WaitingScreen(gameFrame);
                     }
-
-                    // JOptionPane transitionScreen = new WaitingScreen(gameFrame);
-
-                    game.updateHand(toPlayArea.getCards());
                     
                     ArrayList<DisplayCard> toadd = new ArrayList<DisplayCard>();
                     

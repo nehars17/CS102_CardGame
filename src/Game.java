@@ -118,7 +118,7 @@ public class Game {
 
     public boolean isGameOver() {
         return currentPlayer.getCardsInHand().isEmpty();
-    }
+    }   
 
 
     public static void main(String[] args) {
