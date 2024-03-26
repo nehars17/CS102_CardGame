@@ -6,14 +6,24 @@ import gui.windows.GameScreen;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * MiddleButtonPanel contains the buttons that allow the player to play or pass
+ * their turn.
+ */
 public class MiddleButtonPanel extends JPanel {
-
     private JButton playButton;
     private JButton passButton;
 
     private final static int hexColor = 0x085318; // The color of the poker table
     private final static Color backgroundColor = new Color(hexColor);
 
+    /**
+     * Constructs a MiddleButtonPanel, initializing its layout and background color.
+     *
+     * @param game       The game control logic.
+     * @param gameFrame  The main game screen.
+     * @param middlePile The panel representing the middle pile area.
+     */
     public MiddleButtonPanel(GameControl game, GameScreen gameFrame, JPanel middlePile) {
         this.setLayout(new GridBagLayout());
         this.setBackground(backgroundColor);
@@ -27,10 +37,5 @@ public class MiddleButtonPanel extends JPanel {
         this.add(passButton);
 
     }
-
-    // public static void main(String[] args) {
-    // GameControl gc = new GameControl();
-    // new MiddleButtonPanel(gc, new GameScreen(gc), new JPanel());
-    // }
 
 }

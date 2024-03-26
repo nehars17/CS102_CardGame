@@ -11,12 +11,26 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+/**
+ * Represents the button that allows the player to play their cards.
+ */
+
 public class PlayButton extends JButton {
 
     private final Color buttonColor = Color.WHITE;
     private final String assetPath = "images/playcards.jpg";
     private final int imageHeight = 70;
     private final int imageWidth = 70;
+
+    /**
+     * Constructs a PlayButton, initializing its appearance and behavior.
+     *
+     * @param game        The game control logic.
+     * @param displayPanel The panel representing the middle pile area.
+     * @param toPlayArea  The panel representing the area where the player's cards are
+     *                    displayed.
+     * @param gameFrame   The main game screen.
+     */
 
     public PlayButton(GameControl game, JPanel displayPanel, ToPlayArea toPlayArea, GameScreen gameFrame) {
 
@@ -72,6 +86,7 @@ public class PlayButton extends JButton {
                     gameFrame.setVisible(true);
 
                 }
+
             }
         });
     }
