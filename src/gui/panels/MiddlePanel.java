@@ -1,13 +1,11 @@
 package gui.panels;
-import java.awt.*;
-import javax.swing.*;
 
 import controller.GameControl;
 import gui.components.MiddleButtonPanel;
 import gui.windows.GameScreen;
 
-import java.util.ArrayList.*;
-
+import java.awt.*;
+import javax.swing.*;
 
 public class MiddlePanel extends JPanel {
 
@@ -15,25 +13,19 @@ public class MiddlePanel extends JPanel {
     private JPanel middlePile;
     private final static int hexColor = 0x085318; // The color of the poker table
     private final static Color backgroundColor = new Color(hexColor);
-    
-    
-    
-    public MiddlePanel(GameControl game, GameScreen gameScreen){
 
-        
-        middlePile = new JPanel(new GridBagLayout()); 
+    public MiddlePanel(GameControl game, GameScreen gameScreen) {
+
+        middlePile = new JPanel(new GridBagLayout());
         middlePile.setBackground(backgroundColor);
         JPanel whileEmpty = new JPanel();
         whileEmpty.setBackground(backgroundColor);
-        
+
         middlePile.add(whileEmpty);
 
+        buttonPanel = new MiddleButtonPanel(game, gameScreen, middlePile);
+        this.setLayout(new GridLayout(2, 1));
 
-        
-        buttonPanel = new MiddleButtonPanel( game, gameScreen, middlePile);
-        this.setLayout(new GridLayout(2,1));
-        
-        
         this.add(middlePile);
         this.add(buttonPanel);
 

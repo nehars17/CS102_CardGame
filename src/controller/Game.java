@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.List;
-
 import model.cards.Card;
 import model.players.Player;
 import utils.DeckManager;
@@ -9,13 +7,12 @@ import utils.combinations.Combinations;
 
 import java.util.ArrayList;
 
-
 public class Game {
     private Player[] players;
     private DeckManager deckManager;
     private Player currentPlayer;
     private int numberOfPasses;
-    private ArrayList<Card> lastPlayedCards; 
+    private ArrayList<Card> lastPlayedCards;
 
     public Game(Player[] players, DeckManager deckManager) {
         this.players = players;
@@ -35,7 +32,6 @@ public class Game {
         return lastPlayedCards;
     }
 
-    
     public void dealCards() {
         for (Player player : players) {
             for (int i = 0; i < 13; i++) {
@@ -51,9 +47,7 @@ public class Game {
             System.err.println("Player or player's hand is null.");
         }
     }
-    
-    
-    
+
     public Player findStartingPlayer() {
         for (Player player : players) {
             if (hasThreeOfDiamonds(player.getCardsInHand())) {
@@ -87,11 +81,10 @@ public class Game {
         return lastPlayedCards.isEmpty();
     }
 
-    public void nextPlayer(){
+    public void nextPlayer() {
         int currentIndex = getCurrentPlayerIndex();
         currentPlayer = players[(currentIndex + 1) % players.length];
     }
-
 
     public void passTurn() {
         this.numberOfPasses++;
@@ -110,11 +103,7 @@ public class Game {
         numberOfPasses = 0;
     }
 
-    public void showHand(Player player) {
-        List<Card> hand = player.getCardsInHand();
-    }
-
-    public boolean validateCardsToPlay(ArrayList<Card> cardsToPlay){
+    public boolean validateCardsToPlay(ArrayList<Card> cardsToPlay) {
         if (hasThreeOfDiamonds(currentPlayer.getCardsInHand())) {
             if (!hasThreeOfDiamonds(cardsToPlay)) {
                 return false;
@@ -122,7 +111,7 @@ public class Game {
         }
 
         Combinations combinations = new Combinations(cardsToPlay);
-        
+
         if (!combinations.validateCards(cardsToPlay, lastPlayedCards)) {
             return false;
         }
@@ -135,11 +124,5 @@ public class Game {
 
     public boolean isGameOver() {
         return currentPlayer.getCardsInHand().isEmpty();
-    }   
-
-
-    public static void main(String[] args) {
-        new Game(null, null);
     }
-
 }

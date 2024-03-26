@@ -1,10 +1,9 @@
 package utils.combinations;
-// package combinations;
+
+import model.cards.Card;
 
 import java.util.ArrayList;
 import java.util.Map;
-
-import model.cards.Card;
 
 public class FullHouse extends Combinations {
 
@@ -16,7 +15,7 @@ public class FullHouse extends Combinations {
         for (int count : rankCount.values()) {
             if (count == 3) {
                 hasThreeOfAKind = true;
-            } 
+            }
             if (count == 2) {
                 hasPair = true;
             }

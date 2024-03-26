@@ -1,9 +1,9 @@
 package gui.windows;
-import javax.swing.*;
 
 import controller.GameControl;
 import gui.components.ImageComponent;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -16,13 +16,14 @@ public class WinningScreen extends JOptionPane {
         // Set the size of the blur panel to be the same size as the parent frame
         blurPanel.setSize(frame.getSize());
 
-        // Add the blur panel to the parent frame's layered pane such that it appears right above the parent frame
+        // Add the blur panel to the parent frame's layered pane such that it appears
+        // right above the parent frame
         frame.getLayeredPane().add(blurPanel, JLayeredPane.PALETTE_LAYER);
 
         // String array to store the options for the optionpane
-        String[] options = {"Play Again", "Quit"};
+        String[] options = { "Play Again", "Quit" };
 
-        // Create the icon for the winning option 
+        // Create the icon for the winning option
         ImageComponent icon = null;
         try {
             icon = new ImageComponent("images/winning.png", 40, 40);
@@ -30,8 +31,10 @@ public class WinningScreen extends JOptionPane {
             e.printStackTrace();
         }
 
-        // Create a optionpane with the options and store the output into an int variable so that we can change the logic accordingly
-        int choice = this.showOptionDialog(frame, "Do you want to play again?", "You WIN!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon, options, 0);
+        // Create a optionpane with the options and store the output into an int
+        // variable so that we can change the logic accordingly
+        int choice = this.showOptionDialog(frame, "Do you want to play again?", "You WIN!", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, icon, options, 0);
 
         // Remove the semi-transparent panel after the option dialog is closed
         frame.getLayeredPane().remove(blurPanel);

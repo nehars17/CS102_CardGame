@@ -1,11 +1,10 @@
 package gui.panels;
 
-import javax.swing.*;
-
 import gui.components.DisplayCard;
 import gui.windows.StartFrame;
 import controller.GameControl;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 

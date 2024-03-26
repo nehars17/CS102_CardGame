@@ -1,10 +1,11 @@
 package utils.combinations;
+
+import model.cards.Card;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
-import model.cards.Card;
 
 public class Combinations {
     private ArrayList<Card> cardList;
@@ -223,7 +224,8 @@ public class Combinations {
     }
 
     private boolean compareCombiStrength(String combination, String previousCombination) {
-        ArrayList<String> order = new ArrayList<>(Arrays.asList("Straight", "Flush", "Full House", "Quads", "Straight Flush"));
+        ArrayList<String> order = new ArrayList<>(
+                Arrays.asList("Straight", "Flush", "Full House", "Quads", "Straight Flush"));
         return order.indexOf(combination) - order.indexOf(previousCombination) > 0;
     }
 

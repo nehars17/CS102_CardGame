@@ -18,4 +18,3 @@ public class DeckManager {
         return deck.deal();
     }
 }
-

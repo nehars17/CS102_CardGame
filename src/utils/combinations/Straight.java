@@ -1,10 +1,9 @@
 package utils.combinations;
-// package combinations;
+
+import model.cards.Card;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-
-import model.cards.Card;
 
 public class Straight extends Combinations {
 
@@ -13,8 +12,7 @@ public class Straight extends Combinations {
         cardList.sort(Comparator.comparingInt(card -> order.indexOf(card.getRank())));
 
         for (int i = 0; i < cardList.size() - 1; i++) {
-            if (order.indexOf(cardList.get(i).getRank()) + 1 
-                != order.indexOf(cardList.get(i + 1).getRank())) {
+            if (order.indexOf(cardList.get(i).getRank()) + 1 != order.indexOf(cardList.get(i + 1).getRank())) {
                 return false;
             }
         }

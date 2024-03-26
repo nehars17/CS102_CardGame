@@ -1,9 +1,8 @@
 package utils.combinations;
-// package combinations;
-
-import java.util.ArrayList;
 
 import model.cards.Card;
+
+import java.util.ArrayList;
 
 public class Flush extends Combinations {
 

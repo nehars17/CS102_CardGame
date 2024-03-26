@@ -1,13 +1,12 @@
 package gui.components;
 
-import javax.swing.*;
-
 import gui.windows.WaitingScreen;
 import gui.windows.WinningScreen;
 import gui.windows.GameScreen;
 import controller.GameControl;
 import model.cards.Card;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;

@@ -1,10 +1,9 @@
 package utils.combinations;
-// package combinations;
+
+import model.cards.Card;
 
 import java.util.ArrayList;
 import java.util.Map;
-
-import model.cards.Card;
 
 public class Pair extends Combinations {
 

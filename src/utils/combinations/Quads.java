@@ -1,12 +1,11 @@
 package utils.combinations;
-// package combinations;
+
+import model.cards.Card;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-import model.cards.Card;
-
-public class Quads extends Combinations{
+public class Quads extends Combinations {
 
     public boolean isValid(ArrayList<Card> cardList) {
         Map<Character, Integer> rankCount = super.getRankCount(cardList);

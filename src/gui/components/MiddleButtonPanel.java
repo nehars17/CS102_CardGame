@@ -1,15 +1,15 @@
 package gui.components;
-import javax.swing.*;
 
 import controller.GameControl;
 import gui.windows.GameScreen;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.ArrayList.*;
 
-public class MiddleButtonPanel extends JPanel{
+public class MiddleButtonPanel extends JPanel {
 
     private JButton playButton;
     private JButton passButton;
@@ -17,27 +17,24 @@ public class MiddleButtonPanel extends JPanel{
     private GameScreen gameFrame;
     private final static int hexColor = 0x085318; // The color of the poker table
     private final static Color backgroundColor = new Color(hexColor);
-    
-    public MiddleButtonPanel(GameControl game, GameScreen gameFrame, JPanel middlePile){
+
+    public MiddleButtonPanel(GameControl game, GameScreen gameFrame, JPanel middlePile) {
         this.setLayout(new GridBagLayout());
         this.setBackground(backgroundColor);
 
-        ToPlayArea playArea = (ToPlayArea)gameFrame.getBottomPanel().getToPlayArea();
-        
-        playButton = new PlayButton(game,  middlePile , playArea, gameFrame);
+        ToPlayArea playArea = (ToPlayArea) gameFrame.getBottomPanel().getToPlayArea();
+
+        playButton = new PlayButton(game, middlePile, playArea, gameFrame);
         passButton = new PassButton(game, gameFrame);
-        
+
         this.add(playButton);
         this.add(passButton);
-        
+
     }
 
-
     // public static void main(String[] args) {
-    //     GameControl gc = new GameControl();
-    //     new MiddleButtonPanel(gc, new GameScreen(gc), new JPanel());
+    // GameControl gc = new GameControl();
+    // new MiddleButtonPanel(gc, new GameScreen(gc), new JPanel());
     // }
-
-    
 
 }

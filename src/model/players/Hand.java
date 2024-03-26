@@ -1,12 +1,12 @@
 package model.players;
-import java.util.ArrayList;
 
 import model.cards.Card;
+
+import java.util.ArrayList;
 
 public class Hand {
     private ArrayList<Card> cardsInHand;
     private ArrayList<Card> cardsToPlay;
-    private final static int hexColor = 0x085318; // The color of the poker table
 
     public Hand() {
         this.cardsInHand = new ArrayList<>();
@@ -24,7 +24,4 @@ public class Hand {
         cardsInHand.add(card);
     }
 
-    public boolean hasCard(Card card) {
-        return cardsInHand.contains(card);
-    }
 }

@@ -1,12 +1,11 @@
 package controller;
 
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import model.cards.Card;
 import model.players.Player;
 import utils.DeckManager;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GameControl {
     private Player[] players;
@@ -17,11 +16,10 @@ public class GameControl {
         deckManager = new DeckManager();
         players = new Player[4];
 
-        
         for (int i = 0; i < players.length; i++) {
             players[i] = new Player(i + 1);
         }
-        
+
         game = new Game(players, deckManager);
     }
 
@@ -32,8 +30,6 @@ public class GameControl {
         }
         game.setCurrentPlayer(game.findStartingPlayer());
     }
-    
-    
 
     public int getCurrentPlayer() {
         return game.getCurrentPlayer().getPlayerId();
@@ -41,10 +37,6 @@ public class GameControl {
 
     public boolean playerAllowedToPass() {
         return game.getNumberOfPasses() < 3 && !game.isNewRound();
-    }
-
-    public boolean checkIfNewRound() {
-        return game.isNewRound();
     }
 
     public void playerPassTurn() {
@@ -57,17 +49,17 @@ public class GameControl {
 
     }
 
-    public ArrayList<Card> getCurrentPlayerHand(){
+    public ArrayList<Card> getCurrentPlayerHand() {
         return game.getCurrentPlayer().getCardsInHand();
     }
 
-    public HashMap<Integer, Integer> getSizeOfPlayersHand(){
+    public HashMap<Integer, Integer> getSizeOfPlayersHand() {
         HashMap<Integer, Integer> sizeOfPlayersHand = new HashMap<>();
         for (Player player : players) {
             sizeOfPlayersHand.put(player.getPlayerId(), player.getCardsInHand().size());
         }
         return sizeOfPlayersHand;
-    }   
+    }
 
     public void updateHand(ArrayList<Card> cardsToRemove) {
         game.removeCard(cardsToRemove);
@@ -78,7 +70,7 @@ public class GameControl {
         return game.validateCardsToPlay(cardsToPlay);
     }
 
-    public ArrayList<Card> getPreviousPlayedCards(){
+    public ArrayList<Card> getPreviousPlayedCards() {
         return game.getLastPlayedCards();
     }
 
@@ -86,7 +78,7 @@ public class GameControl {
         return game.isGameOver();
     }
 
-    public void gotoNextPlayer(){
+    public void gotoNextPlayer() {
         game.nextPlayer();
     }
 

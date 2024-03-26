@@ -1,9 +1,9 @@
 package utils.combinations;
-// package combinations;
+
+import model.cards.Card;
 
 import java.util.ArrayList;
 
-import model.cards.Card;
 
 public class Single extends Combinations {
 
