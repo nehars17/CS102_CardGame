@@ -10,130 +10,132 @@ import gui.panels.TopPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
+/**
+ * The main game window for the Big Two card game. It initializes and displays
+ * the game board, player hands, and control panels.
+ */
 public class GameScreen extends JFrame {
-    // Set the dimensions of the Frame
-    private final static int windowHeight = 1200;
-    private final static int windowWidth = 800;
-    private final static int borderWidth = 100;
-    private final static int borderHeight = 100;
-    private final static int hexColor = 0x085318; // The color of the poker table
-    private final static Color backgroundColor = new Color(hexColor);
+    // Dimensions and color constants for the frame
+    private static final int WINDOW_HEIGHT = 1200;
+    private static final int WINDOW_WIDTH = 800;
+    private static final int BORDER_WIDTH = 100;
+    private static final int BORDER_HEIGHT = 100;
+    private static final int HEX_COLOR = 0x085318; // The color of the poker table
 
-    // All of the panels and labels that will be in this frame
+    // Panels for displaying different aspects of the game
     private TopPanel northHand;
     private BottomPanel southHand;
     private JPanel centerPanel;
     private SidePanel leftPanel;
     private SidePanel rightPanel;
 
-    GameControl game;
+    private final GameControl game;
 
-    // Constructor to create the frame
+    /**
+     * Constructs the game screen, setting up the game environment and UI components.
+     *
+     * @param game The game control logic.
+     */
     public GameScreen(GameControl game) {
-
         this.game = game;
         game.startGame();
+        initializeFrame();
+        layoutComponents();
+        updatePlayerHand();
+        updateSidePanels();
+        this.setVisible(true); // Make the frame visible after all components are added
+    }
 
-        try {
-            // Create the frame for the application
+    /**
+     * Initializes the frame's properties such as title, size, and close operation.
+     */
+    private void initializeFrame() {
+        this.setTitle("Dai Di");
+        this.setSize(WINDOW_HEIGHT, WINDOW_WIDTH);
+        this.setResizable(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-            this.setTitle("Dai Di"); // Sets the title of the frame
-            this.setSize(windowHeight, windowWidth); // Set the size of the frame
-            this.setResizable(true); // Set the frame to be resizable
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set the frame such that it will be closed upon
-                                                                 // pressing 'x'
+        ImageIcon logo = new ImageIcon("images/logo.jpg");
+        this.setIconImage(logo.getImage());
+        this.getContentPane().setBackground(new Color(HEX_COLOR));
+        this.setLocationRelativeTo(null); // Center the window on the screen
+    }
 
-            ImageIcon logo = new ImageIcon("images/logo.jpg"); // Set the image icon for the logo of the frame
-            this.setIconImage(logo.getImage());
-            this.getContentPane().setBackground(new Color(hexColor)); // Set the background color of the frame to the
-                                                                      // colour of the poker table
-            this.setLocationRelativeTo(null); // Set the frame to appear in the middle of the screen
-
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-
-        // Add the different components to the panel
-
-        // add other player hand displayed
+    /**
+     * Lays out the components on the game screen, including player hands and the central play area.
+     */
+    private void layoutComponents() {
         northHand = new TopPanel(this);
         this.add(northHand, BorderLayout.NORTH);
 
-        // add hand and toplayarea
-
         southHand = new BottomPanel();
-        southHand.setPreferredSize(new Dimension(borderWidth * 2, borderHeight * 2));
+        southHand.setPreferredSize(new Dimension(BORDER_WIDTH * 2, BORDER_HEIGHT * 2));
         this.add(southHand, BorderLayout.SOUTH);
-
-        // add center pile containing prev pile and buttons
 
         centerPanel = new MiddlePanel(game, this);
         this.add(centerPanel, BorderLayout.CENTER);
 
-        // add left and right player hand displayed
-
-        leftPanel = new SidePanel(270);
-        rightPanel = new SidePanel(90); // rotate 90 degrees
-
+        leftPanel = new SidePanel(270); // Rotate 270 degrees for left side
+        rightPanel = new SidePanel(90); // Rotate 90 degrees for right side
         this.add(leftPanel, BorderLayout.WEST);
         this.add(rightPanel, BorderLayout.EAST);
-
-        this.updatePlayerHand();
-        this.updateSidePanels();
-
-        // Set the frame to be accessible
-        this.setVisible(true);
     }
 
+    /**
+     * Updates the game UI to reflect the next player's turn.
+     */
     public void updateToNextPlayer() {
-
-        this.clearPlayerArea();
-        this.updateSidePanels();
-        this.updatePlayerHand();
+        clearPlayerArea();
+        updateSidePanels();
+        updatePlayerHand();
     }
 
+    /**
+     * Updates the side panels with the current status of the game, including player hands.
+     */
     public void updateSidePanels() {
-
         int curPlayerID = game.getCurrentPlayer();
-
         HashMap<Integer, Integer> cardCount = game.getSizeOfPlayersHand();
 
+        // Calculate player positions relative to the current player
         int leftPlayer = curPlayerID - 1 == 0 ? 4 : curPlayerID - 1;
         int rightPlayer = curPlayerID % 4 + 1;
         int northPlayer = curPlayerID > 2 ? curPlayerID - 2 : curPlayerID + 2;
 
-        int leftCardNo = cardCount.get(leftPlayer);
-        int rightCardNo = cardCount.get(rightPlayer);
-        int northCardNo = cardCount.get(northPlayer);
-
+        // Update the card backs and player labels for side panels
         leftPanel.setPlayerLabel(leftPlayer);
         rightPanel.setPlayerLabel(rightPlayer);
         northHand.setPlayerLabel(northPlayer);
 
-        leftPanel.updateCardBacks(leftCardNo);
-        rightPanel.updateCardBacks(rightCardNo);
-        northHand.updateCardBacks(northCardNo);
+        leftPanel.updateCardBacks(cardCount.get(leftPlayer));
+        rightPanel.updateCardBacks(cardCount.get(rightPlayer));
+        northHand.updateCardBacks(cardCount.get(northPlayer));
 
         this.revalidate();
-
     }
 
+    /**
+     * Updates the current player's hand display.
+     */
     public void updatePlayerHand() {
-
         ArrayList<Card> cardsToLoad = game.getCurrentPlayerHand();
         JPanel hand = southHand.getHandArea();
+        hand.removeAll(); // Clear the hand area before adding new cards
         for (Card card : cardsToLoad) {
             ClickableCard cardButton = new ClickableCard(this, card, hand, southHand.getToPlayArea());
             hand.add(cardButton);
         }
 
         this.revalidate();
-        this.setVisible(true);
+        this.repaint(); // Ensure the hand area is correctly repainted after adding new cards
     }
 
+    /**
+     * Clears the play area and the player's current hand display in preparation for the next turn.
+     */
     public void clearPlayerArea() {
         JPanel playArea = southHand.getToPlayArea();
         JPanel hand = southHand.getHandArea();
@@ -142,17 +144,15 @@ public class GameScreen extends JFrame {
         hand.repaint();
         playArea.repaint();
         this.revalidate();
-
     }
 
+    /**
+     * Retrieves the bottom panel of the game screen. This is primarily used for
+     * adding or removing components dynamically during the game.
+     *
+     * @return The bottom panel of the game screen.
+     */
     public BottomPanel getBottomPanel() {
         return southHand;
     }
-
-    public void generateOtherPlayerCards() {
-
-    }
-
-    // To test if the constructor for this frame is working
-
 }
