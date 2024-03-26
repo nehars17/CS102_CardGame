@@ -103,4 +103,14 @@ public class Card implements Comparable<Card> {
         return suit;
     }
 
+    public int compareRank(Card anotherCard) {
+        String order = "3456789tjqka2";
+        return order.indexOf(getRank()) - order.indexOf(anotherCard.getRank());
+    }
+
+    public int compareSuit(Card anotherCard) {
+        String order = "dhcs";
+        return order.indexOf(getSuit()) - order.indexOf(anotherCard.getSuit());
+    }
+
 }
