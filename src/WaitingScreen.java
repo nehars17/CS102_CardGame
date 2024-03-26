@@ -33,7 +33,7 @@ public class WaitingScreen extends JOptionPane {
         frame.repaint();
 
         // String array to store the options for the optionpane
-        String[] options = {"Ready", "Quit"};
+        String[] options = {"Ready"};
 
         // Set the icon for the waiting opinion pane
         ImageComponent icon = null;
@@ -44,7 +44,7 @@ public class WaitingScreen extends JOptionPane {
         }
 
         // Create a optionpane with the options and store the output into an int variable so that we can change the logic accordingly
-        int choice = this.showOptionDialog(frame, "Are you ready to play?", "Waiting for player...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon, options, 0);
+        int choice = this.showOptionDialog(frame, "Are you ready to play?", "Waiting for player...", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, icon, options, 0);
 
         if (choice == JOptionPane.YES_OPTION) {
             // Continue with the game
