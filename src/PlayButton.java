@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -44,7 +43,6 @@ public class PlayButton extends JButton{
 
                 
                 if ( game.isPlayable(toPlayArea.getCards()) ){
-                    // JOptionPane transitionScreen = new WaitingScreen(gameFrame);
 
                     game.updateHand(toPlayArea.getCards());
 
@@ -53,6 +51,8 @@ public class PlayButton extends JButton{
                     }else{
                         new WaitingScreen(gameFrame);
                     }
+
+                    // JOptionPane transitionScreen = new WaitingScreen(gameFrame);
                     
                     ArrayList<DisplayCard> toadd = new ArrayList<DisplayCard>();
                     
