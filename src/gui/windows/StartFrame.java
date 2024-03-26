@@ -5,260 +5,158 @@ import gui.components.ImageComponent;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.util.*;
+import java.awt.event.ActionListener;
 
+/**
+ * The initial frame of the game, providing options to start the game, view help, or exit.
+ */
 public class StartFrame extends JFrame {
-    // Dimensions of the frame
-    private final static int windowHeight = 1200;
-    private final static int windowWidth = 800;
-    private final static int borderWidth = 100;
-    private final static int borderHeight = 100;
-    private final static int buttonWidth = 200;
-    private final static int buttonHeight = 80;
-    private final static int hexColor = 0x085318; // The color of the poker table
+    private static final int WINDOW_HEIGHT = 1200;
+    private static final int WINDOW_WIDTH = 800;
+    private static final int BUTTON_WIDTH = 200;
+    private static final int BUTTON_HEIGHT = 80;
+    private static final int HEX_COLOR = 0x085318; // The color of the poker table
 
-    // Create all of the panels and labels outside of the method so that it is
-    // assesssible thorughout the class
     private JPanel startScreen;
-    private JLabel startlabel;
+    private JLabel startLabel;
     private JButton startButton;
     private JButton helpButton;
     private JButton exitButton;
 
-    private GameControl gameControl;
+    private final GameControl gameControl;
 
-    // Create the constructor of StartFrame
+    /**
+     * Constructs the StartFrame with a reference to the game control.
+     * 
+     * @param gameControl The game control object to interact with the game logic.
+     */
     public StartFrame(GameControl gameControl) {
-
         this.gameControl = gameControl;
-        // Try catch to catch the IllegalArgumentException that will be thrown incase an
-        // invalid file is passed into the ImageComponent constructor
+        initializeFrame();
+        createStartScreen();
+        this.add(startScreen);
+        this.setVisible(true);
+    }
+
+    /**
+     * Initializes the frame's basic properties.
+     */
+    private void initializeFrame() {
+        this.setTitle("Dai Di");
+        this.setSize(WINDOW_HEIGHT, WINDOW_WIDTH);
+        this.setResizable(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         try {
-            // Create the frame for the application
-            this.setTitle("Dai Di"); // Sets the title of the frame
-            this.setSize(windowHeight, windowWidth); // Set the size of the frame
-            this.setResizable(true); // Set the frame to be resizable
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set the frame such that it will be closed upon
-                                                                 // pressing 'x'
-            ImageComponent logo = new ImageComponent("images/logo.jpg"); // Set the image icon for the logo of the frame
+            ImageComponent logo = new ImageComponent("images/logo.jpg");
             this.setIconImage(logo.getImage());
-            this.getContentPane().setBackground(new Color(hexColor)); // Set the background color of the frame to the
-                                                                      // colour of the poker table
-            this.setLocationRelativeTo(null); // Set the frame to appear in the middle of the screen
-
-            // Add the different components to the panel
-            createStartScreen();
-
-            this.add(startScreen);
-
-            // Set the frame to be accessible
-            this.setVisible(true);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
+        this.getContentPane().setBackground(new Color(HEX_COLOR));
+        this.setLocationRelativeTo(null);
     }
 
-    // Create the label
-    private void createStartlabel() {
-        // Try catch to catch the IllegalArgumentException that will be thrown incase an
-        // invalid file is passed into the ImageComponent constructor
-        try {
-            ImageComponent startImage = new ImageComponent("images/startscreen.png", 330, 280);
-            startlabel = new JLabel();
-            startlabel.setIcon(startImage);
-            // Use html tags to allow for text manipulation
-            startlabel.setText(
-                    "<html><div style='text-align: center;'>Welcome to Dai Di!!!<br>A 4 player game of luck and skill</div></html>");
-            // Change the font size and style of the text
-            startlabel.setFont(new Font("Roboto", Font.BOLD, 30));
-            // Change the color and the font of the text
-            startlabel.setForeground(Color.WHITE);
-            startlabel.setHorizontalTextPosition(JLabel.CENTER);
-            startlabel.setVerticalTextPosition(JLabel.BOTTOM);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Create the start button
-    private void createStartButton() {
-        // Try catch to catch the IllegalArgumentException that will be thrown incase an
-        // invalid file is passed into the ImageComponent constructor
-        try {
-            startButton = new JButton("Start Game");
-            // Set the dimensions of the button
-            startButton.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-            // Set the fontsize and color of the textt in the button
-            startButton.setFont(new Font("Roboto", Font.BOLD, 20));
-            startButton.setForeground(Color.RED);
-            ImageComponent resizedIcon = new ImageComponent("images/play.jpg", 50, 50);
-            startButton.setIcon(resizedIcon);
-
-            // Set the position of the text and the icon in the button
-            startButton.setHorizontalTextPosition(JButton.LEFT);
-            startButton.setVerticalTextPosition(JButton.CENTER);
-            startButton.setHorizontalAlignment(JButton.RIGHT);
-            startButton.setVerticalAlignment(JButton.CENTER);
-
-            // Change the background of the button
-            startButton.setBackground(Color.WHITE);
-            startButton.setFocusable(false);
-            // Change the borders of the button
-            startButton.setBorder(BorderFactory.createRaisedSoftBevelBorder());
-            // Add the mouse listener to the button
-            startButton.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    dispose();
-                    // Start the game
-                    // gameControl.startGame(); //GameScreen newGame =
-                    new GameScreen(gameControl);
-                }
-            });
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Create the exit button
-    private void createExitButton() {
-        // Try catch to catch the IllegalArgumentException that will be thrown incase an
-        // invalid file is passed into the ImageComponent constructor
-        try {
-            exitButton = new JButton("Exit Game");
-            exitButton.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-            exitButton.setFont(new Font("Roboto", Font.BOLD, 20));
-            exitButton.setForeground(Color.RED);
-            ImageComponent resizedIcon2 = new ImageComponent("images/exit.png", 50, 50);
-            exitButton.setIcon(resizedIcon2);
-
-            // Set the position of the text and the icon in the button
-            exitButton.setVerticalAlignment(JButton.CENTER);
-            exitButton.setHorizontalAlignment(JButton.RIGHT);
-            exitButton.setHorizontalTextPosition(JButton.LEFT);
-            exitButton.setVerticalTextPosition(JButton.CENTER);
-
-            // Change the background of the button
-            exitButton.setBackground(Color.WHITE);
-            exitButton.setFocusable(false);
-            // Change the borders of the button
-            exitButton.setBorder(BorderFactory.createRaisedSoftBevelBorder());
-            // Add a mouse listener to the exit button
-            exitButton.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    // Close the frame
-                    System.exit(0);
-                }
-            });
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Function to create the help button
-    private void createHelpButton() {
-        helpButton = new JButton("Help       ");
-        helpButton.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
-        helpButton.setFont(new Font("Roboto", Font.BOLD, 20));
-        helpButton.setForeground(Color.RED);
-        ImageComponent resizedIcon2 = new ImageComponent("images/help.png", 50, 50);
-        helpButton.setIcon(resizedIcon2);
-
-        // Align the Icons and the text in the button
-        helpButton.setVerticalAlignment(JButton.CENTER);
-        helpButton.setHorizontalAlignment(JButton.RIGHT);
-        helpButton.setHorizontalTextPosition(JButton.LEFT);
-        helpButton.setVerticalTextPosition(JButton.CENTER);
-
-        // Change the background of the button
-        helpButton.setBackground(Color.WHITE);
-        helpButton.setFocusable(false);
-        // Change the borders of the button
-        helpButton.setBorder(BorderFactory.createRaisedSoftBevelBorder());
-
-        // Add a mouse listener to the help button
-        helpButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                // Create a JEditorPane
-                JEditorPane editorPane = new JEditorPane();
-                editorPane.setEditable(false); // Make it non-editable
-                editorPane.setContentType("text/html"); // Set content type as HTML
-
-                // Read the HTML content from the file and set it to the JEditorPane
-                try {
-                    // Assuming rules.html is in the project directory
-                    File htmlFile = new File("../src/textassets/rules.html");
-                    editorPane.setPage(htmlFile.toURI().toURL());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    editorPane.setText("Failed to load the rules.");
-                }
-
-                // Create a JScrollPane and add the JEditorPane to it
-                JScrollPane scrollPane = new JScrollPane(editorPane);
-                scrollPane.setPreferredSize(new Dimension(500, 500)); // Set preferred size
-
-                // Show a message dialog with the JScrollPane
-                JOptionPane.showMessageDialog(StartFrame.this, scrollPane, "Game Rules",
-                        JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
-
-    }
-
-    // Create the panel for the start screen
+    /**
+     * Creates the start screen layout with buttons and a welcome message.
+     */
     private void createStartScreen() {
-        // Create a new panel for the start screen
-        // Using GridBagLayout to allow for more flexibility in the layout, allow us to
-        // determine where exactly we want what to go
         startScreen = new JPanel(new GridBagLayout());
-        // Change the background of the frame
-        startScreen.setBackground(new Color(hexColor));
-
-        // Create the grid bag contraints
+        startScreen.setBackground(new Color(HEX_COLOR));
         GridBagConstraints gbc = new GridBagConstraints();
-        // Top, Left, Bottom, Right
-        // The insets represents the space that a container should leave at each of its
-        // edges
         gbc.insets = new Insets(10, 0, 10, 0);
 
-        createStartlabel();
-        createStartButton();
-        createStartlabel();
-        // gridx and gridy determines in which cell your component will be placed
-        // 0, 0 is the top left
-        // The gridx and gridy is relative to the other components in the panel
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        // Add the label to the panel
-        startScreen.add(startlabel, gbc);
+        createStartLabel(gbc);
+        createButtons(gbc);
+    }
 
-        // Create the buttons
+    /**
+     * Creates the start screen label with game instructions or welcome message.
+     * 
+     * @param gbc The GridBagConstraints object to manage layout constraints.
+     */
+    private void createStartLabel(GridBagConstraints gbc) {
+        try {
+            ImageComponent startImage = new ImageComponent("images/startscreen.png", 330, 280);
+            startLabel = new JLabel();
+            startLabel.setIcon(new ImageIcon(startImage.getImage()));
+            startLabel.setText("<html><div style='text-align: center;'>Welcome to Dai Di!<br>A 4 player game of luck and skill</div></html>");
+            startLabel.setFont(new Font("Roboto", Font.BOLD, 30));
+            startLabel.setForeground(Color.WHITE);
+            startLabel.setHorizontalTextPosition(JLabel.CENTER);
+            startLabel.setVerticalTextPosition(JLabel.BOTTOM);
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            startScreen.add(startLabel, gbc);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Creates the buttons for starting the game, viewing help, and exiting the game.
+     * 
+     * @param gbc The GridBagConstraints object to manage layout constraints.
+     */
+    private void createButtons(GridBagConstraints gbc) {
         createStartButton();
-        createHelpButton();
-        createExitButton();
-        // Add the start button to the panel
         gbc.gridx = 0;
         gbc.gridy = 1;
         startScreen.add(startButton, gbc);
 
-        // Add the help button to the panel
-        gbc.gridx = 0;
+        createHelpButton();
         gbc.gridy = 2;
         startScreen.add(helpButton, gbc);
 
-        // Add the exit button to the panel
-        gbc.gridx = 0;
+        createExitButton();
         gbc.gridy = 3;
         startScreen.add(exitButton, gbc);
     }
 
-    // //To test if the constructor is working
-    // public static void main(String[] args) {
-    // new StartFrame();
-    // }
+    private void createStartButton() {
+        startButton = new JButton("Start Game");
+        configureButton(startButton, "images/play.jpg", e -> {
+            dispose(); // Close the current window
+            new GameScreen(gameControl); // Open the main game window
+        });
+    }
+    
+    private void createHelpButton() {
+        helpButton = new JButton("Help");
+        configureButton(helpButton, "images/help.png", e -> {
+            // Display help dialog or window
+            JOptionPane.showMessageDialog(this, "Game Rules:\n[Insert game rules here]", "Help", JOptionPane.INFORMATION_MESSAGE);
+        });
+    }
+    
+    private void createExitButton() {
+        exitButton = new JButton("Exit Game");
+        configureButton(exitButton, "images/exit.png", e -> System.exit(0)); // Exit the application
+    }
+    
+    /**
+     * Configures a JButton with the provided text, icon, and action listener.
+     * 
+     * @param button      The button to configure.
+     * @param iconPath    Path to the icon image.
+     * @param action      ActionListener to be attached to the button.
+     */
+    private void configureButton(JButton button, String iconPath, ActionListener action) {
+        button.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+        button.setFont(new Font("Roboto", Font.BOLD, 20));
+        button.setForeground(Color.RED);
+        try {
+            Image img = new ImageIcon(iconPath).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            button.setIcon(new ImageIcon(img));
+        } catch (Exception e) {
+            e.printStackTrace();
+            button.setIcon(null); // Fallback to no icon in case of failure
+        }
+        button.setHorizontalTextPosition(JButton.RIGHT);
+        button.setVerticalTextPosition(JButton.CENTER);
+        button.setBackground(Color.WHITE);
+        button.setFocusable(false);
+        button.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+        button.addActionListener(action);
+    }
+    
 }
