@@ -39,8 +39,7 @@ public class WinningScreen extends JOptionPane {
             newGame.startGame();
             new GameScreen(newGame);
         } else {
-            // Exit the game
-            frame.dispose();
+            System.exit(0);
         }
     }
 }
