@@ -131,8 +131,10 @@ public class GameScreen extends JFrame {
     public void clearPlayerArea(){
         JPanel playArea = southHand.getToPlayArea();
         JPanel hand = southHand.getHandArea();
+
         hand.removeAll();
         playArea.removeAll();
+        
         hand.repaint();
         playArea.repaint();
         this.revalidate();
