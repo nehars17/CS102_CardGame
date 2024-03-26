@@ -5,15 +5,13 @@ import java.util.ArrayList;
 public class Game {
     private Player[] players;
     private DeckManager deckManager;
-    private ScoreKeeper scoreKeeper;
     private Player currentPlayer;
     private int numberOfPasses;
     private ArrayList<Card> lastPlayedCards; 
 
-    public Game(Player[] players, DeckManager deckManager, ScoreKeeper scoreKeeper) {
+    public Game(Player[] players, DeckManager deckManager) {
         this.players = players;
         this.deckManager = deckManager;
-        this.scoreKeeper = scoreKeeper;
         this.lastPlayedCards = new ArrayList<Card>();
     }
 
@@ -66,10 +64,6 @@ public class Game {
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
-
-    // public void startRound(Player startingPlayer) {
-    //     currentPlayer = startingPlayer;
-    // }
 
     public boolean isNewRound() {
         return lastPlayedCards.isEmpty();
@@ -126,27 +120,9 @@ public class Game {
         return currentPlayer.getCardsInHand().isEmpty();
     }
 
-    public void calculateFinalScores() {
-        for (Player player : players) {
-            int penalty = calculatePenalty(player);
-            player.addPenaltyPoints(penalty);
-            scoreKeeper.updateScore(player, penalty);
-        }
-    }
-
-    private int calculatePenalty(Player player) {
-        int cardCount = player.getCardsInHand().size();
-        if (cardCount == 13) {
-            return 39; // Did not play at all
-        }
-        if (cardCount > 9) {
-            return cardCount * 2;
-        }
-        return cardCount;
-    }
 
     public static void main(String[] args) {
-        new Game(null, null, null);
+        new Game(null, null);
     }
 
 }

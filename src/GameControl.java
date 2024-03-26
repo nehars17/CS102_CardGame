@@ -1,27 +1,22 @@
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.HashMap;
 
 public class GameControl {
     private Player[] players;
     private DeckManager deckManager;
-    private ScoreKeeper scoreKeeper;
     private Game game;
 
     public GameControl() {
         deckManager = new DeckManager();
-
-        scoreKeeper = new ScoreKeeper();
         players = new Player[4];
-        scoreKeeper.initializeScores(players);
 
         
         for (int i = 0; i < players.length; i++) {
             players[i] = new Player(i + 1);
         }
         
-        game = new Game(players, deckManager, scoreKeeper);
+        game = new Game(players, deckManager);
     }
 
     public void startGame() {

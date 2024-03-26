@@ -157,7 +157,9 @@ public class Combinations {
                 }
                 // break;
             case "Straight Flush":
-                return compareStraightFlush(cardsToPlay, lastPlayedCards);
+                if (cardsToPlayType.equals(lastPlayedCardsType)) {
+                    return compareStraightFlush(cardsToPlay, lastPlayedCards);
+                }
             default:
                 return false;
 
