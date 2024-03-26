@@ -45,7 +45,6 @@ public class GameControl {
         if (playerAllowedToPass()) {
             game.passTurn();
         }
-        System.out.println("Number of passes: " + game.getNumberOfPasses());
         if (game.getNumberOfPasses() == 3) {
             game.startNewRound();
         }
@@ -78,7 +77,6 @@ public class GameControl {
     }
 
     public boolean checkGameOver() {
-        System.out.println("Game Over: " + game.isGameOver());
         return game.isGameOver();
     }
 

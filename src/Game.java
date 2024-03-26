@@ -81,7 +81,6 @@ public class Game {
 
     public void nextPlayer(){
         int currentIndex = getCurrentPlayerIndex();
-        System.out.println("Current index: " + currentIndex);
         currentPlayer = players[(currentIndex + 1) % players.length];
     }
 
@@ -105,7 +104,6 @@ public class Game {
 
     public void showHand(Player player) {
         List<Card> hand = player.getCardsInHand();
-        System.out.println(player.getPlayerId() + "'s hand: " + hand);
     }
 
     public boolean validateCardsToPlay(ArrayList<Card> cardsToPlay){
