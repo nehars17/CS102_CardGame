@@ -32,10 +32,13 @@ public class GameControl {
         return game.getNumberOfPasses() < 3 && !game.isNewRound();
     }
 
+    
+
     public void playerPassTurn() {
         if (playerAllowedToPass()) {
             game.passTurn();
         }
+        System.out.println("Number of passes: " + game.getNumberOfPasses());
         if (game.getNumberOfPasses() == 3) {
             game.startNewRound();
         }

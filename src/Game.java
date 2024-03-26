@@ -71,20 +71,21 @@ public class Game {
 
     public void nextPlayer(){
         int currentIndex = getCurrentPlayerIndex();
+        System.out.println("Current index: " + currentIndex);
         currentPlayer = players[(currentIndex + 1) % players.length];
     }
 
 
     public void passTurn() {
         this.numberOfPasses++;
-        int currentIndex = getCurrentPlayerIndex();
-        currentPlayer = players[(currentIndex + 1) % players.length];
+        nextPlayer();
     }
 
     public void removeCard(ArrayList<Card> cardsToPlay) {
         for (Card card : cardsToPlay) {
             currentPlayer.getCardsInHand().remove(card);
         }
+        numberOfPasses = 0;
     }
 
     public void startNewRound() {
