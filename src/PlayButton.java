@@ -21,11 +21,18 @@ public class PlayButton extends JButton{
 
         this.gameFrame = gameFrame;
         this.displayPanel = displayPanel;
-        this.setBackground(buttonColor);
+        this.setText("Play");
+        this.setFont(new Font("Roboto", Font.BOLD, 20));
+        this.setForeground(Color.RED);
         this.setIcon( new ImageComponent(assetPath, imageWidth , imageHeight));
-        this.setBorder(BorderFactory.createEmptyBorder());
-        this.setOpaque(false);
-        this.setContentAreaFilled(false);
+
+        this.setHorizontalTextPosition(JButton.LEFT);
+        this.setVerticalTextPosition(JButton.CENTER);
+        this.setHorizontalAlignment(JButton.RIGHT);
+        this.setVerticalAlignment(JButton.CENTER);
+
+        this.setBackground(buttonColor);
+        this.setBorder(BorderFactory.createRaisedSoftBevelBorder());
 
         
 
