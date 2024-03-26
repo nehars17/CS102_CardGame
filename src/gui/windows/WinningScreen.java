@@ -40,9 +40,7 @@ public class WinningScreen extends JOptionPane {
         if (choice == JOptionPane.YES_OPTION) {
             // Restart the game
             frame.dispose();
-            GameControl newGame = new GameControl();
-            newGame.startGame();
-            new GameScreen(newGame);
+            new GameScreen(new GameControl());
         } else {
             System.exit(0);
         }

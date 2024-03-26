@@ -10,6 +10,6 @@ public class App {
         GameControl game = new GameControl();
         // game.startGame();
     
-        JFrame gameWindow = new StartFrame(game);
+        new StartFrame(game);
     }
 }
