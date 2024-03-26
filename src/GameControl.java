@@ -21,8 +21,13 @@ public class GameControl {
 
     public void startGame() {
         game.dealCards();
+        for (Player player : players) {
+            game.sortHand(player);
+        }
         game.setCurrentPlayer(game.findStartingPlayer());
     }
+    
+    
 
     public int getCurrentPlayer() {
         return game.getCurrentPlayer().getPlayerId();
@@ -32,7 +37,9 @@ public class GameControl {
         return game.getNumberOfPasses() < 3 && !game.isNewRound();
     }
 
-    
+    public boolean checkIfNewRound() {
+        return game.isNewRound();
+    }
 
     public void playerPassTurn() {
         if (playerAllowedToPass()) {
