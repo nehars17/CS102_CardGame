@@ -1,1 +1,1 @@
-javac -d . bigtwo/*.java bigtwo/game/*.java bigtwo/players/*.java bigtwo/utils/*.java bigtwo/ui/*.java bigtwo/cards/*.java
+javac -d classes -cp src src/main/App.java
