@@ -22,8 +22,10 @@ public class PassButton extends JButton{
                     return;
                 }
                 gameControl.playerPassTurn();
-                // new WaitingScreen(gameScreen);
+                new WaitingScreen(gameScreen);
                 gameScreen.updateToNextPlayer();
+
+                
             }
         });
 

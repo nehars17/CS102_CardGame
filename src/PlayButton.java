@@ -40,6 +40,8 @@ public class PlayButton extends JButton{
 
                     if (game.checkGameOver()){
                         JOptionPane win = new WinningScreen(gameFrame); //generate winning window 
+                    }else{
+                        new WaitingScreen(gameFrame);
                     }
 
                     // JOptionPane transitionScreen = new WaitingScreen(gameFrame);

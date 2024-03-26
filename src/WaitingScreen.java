@@ -16,7 +16,9 @@ public class WaitingScreen extends JOptionPane {
 
         // Set the size and location of the blur panel
         // The parameters are as such: x, y (position of the panel), width, height (size of the panel)
-        blurPanel.setBounds(borderWidth + 80, 560, windowWidth + 30, borderHeight + 100);
+
+
+        blurPanel.setBounds(0 , 560, windowWidth*2, borderHeight + 100);
 
         // Add the blur panel to the parent frame's layered pane such that it appears right on top of the pane
         frame.getLayeredPane().add(blurPanel, JLayeredPane.PALETTE_LAYER);
