@@ -60,13 +60,15 @@ public class TopPanel extends JPanel {
      * Creates the exit game button and configures its action.
      */
     private void createExitGameButton() {
-        exitGameButton = new JButton("X");
+        exitGameButton = new JButton("<");
         exitGameButton.setPreferredSize(new Dimension(BORDER_WIDTH, BORDER_HEIGHT));
-        exitGameButton.setFont(new Font("Futura", Font.BOLD, 90));
+        exitGameButton.setFont(new Font("Futura", Font.BOLD, 50));
+        exitGameButton.setHorizontalTextPosition(JButton.LEFT);
+        exitGameButton.setVerticalTextPosition(JButton.TOP);
         exitGameButton.setFocusable(false);
         exitGameButton.setBorderPainted(false);
         exitGameButton.setContentAreaFilled(false);
-        exitGameButton.setForeground(Color.BLACK);
+        exitGameButton.setForeground(Color.RED);
 
         exitGameButton.addMouseListener(new MouseAdapter() {
             @Override
