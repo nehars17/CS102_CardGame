@@ -1,23 +1,25 @@
 # Big2 Card Game Implementation 
+
 ## Group 1 Team 6
+
+![BigTwo Banner](images/BigTwoBanner.png)
 
 ---
 
 ## Team Members:
-- NEHA D/O RAM SINGASAN
-- LOO ZHI YI
-- CHUA KIA YING
-- TORI NG 
-- PUA JIN CHONG IAN
-- LIM JUN SHYANN
+
+- Neha D/O Ram Singasan
+- Loo Zhi Yi
+- Chua Kia Ying
+- Tori Ng
+- Pua Jin Chong Ian
+- Lim Jun Shyann
 
 ---
 
 ## Project Description:
 
-This project aims to implement a digital version of the popular card game Big Two, that can be played by four players. The objective is to be the first to discard all your cards.  
-
-Java Swing was used to create the GUI components in this project.
+In this project, we've created a digital version of the beloved card game, Big Two, which supports four-player gameplay. The goal is simple: be the very first to get rid of all your cards. Utilizing Java Swing, we've developed an intuitive graphical user interface (GUI) that brings the excitement of Big Two to your screen.
 
 ---
 
@@ -36,7 +38,7 @@ Card Ranking (Low to High):
 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A, 2
 
 Suit Ranking (Low to High):
-Diamonds, Clubs, Hearts, Spades 
+Diamonds, Clubs, Hearts, Spades  
 
 ### Gameplay:
 
@@ -53,6 +55,7 @@ Diamonds, Clubs, Hearts, Spades
  -Full House: Three cards of the same rank and a pair (e.g., three Jacks and two 5s).
 - Quads (Four of a kind): Four cards of the same rank (e.g., four Queens).
 - Straight Flush: Five consecutive cards of the same suit (e.g., 10, J, Q, K, A of Hearts).
+
 
 4. Passing: If a player cannot play a higher-valued combination, they can choose to "pass".
 
@@ -77,57 +80,3 @@ Navigate to the project directory and run the `compile.bat` script:
 After compilation, start the game using the `run.bat` script
 
 ---
-
-## Project Structure
-
-.
-└── src/  
-    ├── compile.bat  
-    ├── run.bat  
-    ├── images/  
-    └── README.md  
-    └── model/  
-    │   ├── cards/  
-    │   │   ├── Card.java  
-    │   │   └── Deck.java  
-    │   └── players/  
-    │       ├── Hand.java  
-    │       └── Player.java  
-    └── utils/  
-    │   ├── DeckManager.java  
-    │   └── combinations/  
-    │       ├── Combinations.java  
-    │       ├── Flush.java  
-    │       ├── FullHouse.java  
-    │       ├── Pair.java  
-    │       ├── Quads.java  
-    │       ├── Single.java  
-    │       ├── Straight.java  
-    │       └── StraightFlush.java  
-    └── controller/  
-    │   ├── GameControl.java  
-    │   └── Game.java  
-    └── gui/  
-    │   ├── windows/  
-    │   │   ├── StartFrame.java  
-    │   │   ├── GameScreen.java  
-    │   │   ├── WinningScreen.java  
-    │   │   └── WaitingScreen.java  
-    │   ├── panels/  
-    │   │   ├── TopPanel.java  
-    │   │   ├── SidePanel.java  
-    │   │   ├── BottomPanel.java  
-    │   │   └── MiddlePanel.java  
-    │   └── components/  
-    │       ├── RotatedLabel.java  
-    │       ├── PassButton.java  
-    │       ├── PlayButton.java  
-    │       ├── HandArea.java  
-    │       ├── MiddleButtonPanel.java  
-    │       ├── ImageComponent.java  
-    │       ├── ClickableCard.java  
-    │       └── DisplayCard.java  
-    └── textassets/  
-    │   └── rules.html  
-    └── main/  
-        └── App.java  
