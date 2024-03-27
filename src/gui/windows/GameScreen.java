@@ -126,6 +126,7 @@ public class GameScreen extends JFrame {
         ArrayList<Card> cardsToLoad = game.getCurrentPlayerHand();
         JPanel hand = southHand.getHandArea();
         hand.removeAll(); // Clear the hand area before adding new cards
+        
         for (Card card : cardsToLoad) {
             ClickableCard cardButton = new ClickableCard(this, card, hand, southHand.getToPlayArea());
             hand.add(cardButton);

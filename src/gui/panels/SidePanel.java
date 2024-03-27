@@ -79,8 +79,7 @@ public class SidePanel extends JPanel {
     public void updateCardBacks(int sizeOfPlayersHand) {
         backOfCardPanel.removeAll();
         constraints.gridx = 0;
-        constraints.weighty = 0.1;
-        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.weighty = 2;
 
         for (int i = 0; i < sizeOfPlayersHand; i++) {
             constraints.gridy = i;

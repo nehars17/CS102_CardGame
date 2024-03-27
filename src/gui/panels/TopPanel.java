@@ -20,7 +20,6 @@ public class TopPanel extends JPanel {
     private JButton exitGameButton;
     private JLabel playerLabel;
     private JPanel cardPanel = new JPanel(new GridBagLayout());
-    private GridBagConstraints constraints = new GridBagConstraints();
 
     private JFrame gameScreen;
 
@@ -50,6 +49,8 @@ public class TopPanel extends JPanel {
         JPanel leftPadding = createPaddingPanel();
         JPanel rightPadding = createPaddingPanel();
 
+        leftPadding.add(exitGameButton);
+
         add(leftPadding, BorderLayout.WEST);
         add(createMiddlePanel(), BorderLayout.CENTER);
         add(rightPadding, BorderLayout.EAST);
@@ -65,7 +66,7 @@ public class TopPanel extends JPanel {
         exitGameButton.setFocusable(false);
         exitGameButton.setBorderPainted(false);
         exitGameButton.setContentAreaFilled(false);
-        exitGameButton.setForeground(Color.WHITE);
+        exitGameButton.setForeground(Color.BLACK);
 
         exitGameButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -135,13 +136,10 @@ public class TopPanel extends JPanel {
      */
     public void updateCardBacks(int sizeOfPlayersHand) {
         cardPanel.removeAll();
-        constraints.gridy = 0;
-        constraints.weightx = 0.01;
 
         for (int i = 0; i < sizeOfPlayersHand; i++) {
             DisplayCard cardBack = new DisplayCard();
-            constraints.gridx = i;
-            cardPanel.add(cardBack, constraints);
+            cardPanel.add(cardBack);
         }
 
         cardPanel.revalidate();
@@ -156,7 +154,5 @@ public class TopPanel extends JPanel {
     public void setPlayerLabel(int playerNo) {
         playerLabel.setText("Player " + playerNo);
     }
-
-    // Other potential utility methods for TopPanel could go here.
 }
 
