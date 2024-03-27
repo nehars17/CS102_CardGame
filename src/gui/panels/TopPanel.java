@@ -20,6 +20,7 @@ public class TopPanel extends JPanel {
     private JButton exitGameButton;
     private JLabel playerLabel;
     private JPanel cardPanel = new JPanel(new GridBagLayout());
+    private GridBagConstraints constraints = new GridBagConstraints();
 
     private JFrame gameScreen;
 
@@ -139,9 +140,14 @@ public class TopPanel extends JPanel {
     public void updateCardBacks(int sizeOfPlayersHand) {
         cardPanel.removeAll();
 
+        constraints.gridy = 1;
+        constraints.weightx = 0.1;
+
         for (int i = 0; i < sizeOfPlayersHand; i++) {
+
+            constraints.gridx = i;
             DisplayCard cardBack = new DisplayCard();
-            cardPanel.add(cardBack);
+            cardPanel.add(cardBack, constraints);
         }
 
         cardPanel.revalidate();
