@@ -53,63 +53,88 @@
     </style>
 </head>
 <body>
-<div class="section">
-    <h1>Dai Di Game Rules</h1>
-    <p>Objective: Be the first player to discard all your cards.</p>
-</div>
+    <div class="section">
+        <h1>Dai Di Game Rules</h1>
+        <p>Objective: Be the first player to discard all your cards.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Players</h2>
+        <p>The game can be played by 4 players.</p>
+    
+        <h2>Dealing Cards</h2>
+        <p>Each player is dealt 13 cards.</p>
+    
+        <h2>Card Ranking (Low to High)</h2>
+        <p class="card">3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A, 2</p>
+    
+        <h2>Suit Ranking (Low to High)</h2>
+        <p class="suit">Diamonds, Clubs, Hearts, Spades</p>
+    </div>
 
-<div class="section">
-    <h2>Card Ranking (Low to High)</h2>
-    <p class="card">3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A, 2</p>
-</div>
-
-<div class="section">
-    <h2>Suit Ranking (Low to High)</h2>
-    <p class="suit">Diamonds, Clubs, Hearts, Spades</p>
-</div>
-
-<div class="section">
-    <h2>Gameplay</h2>
-    <h3>Dealing</h3>
-    <p>
-        The dealer shuffles and deals 13 cards face down to each player, one at
-        a time, moving clockwise.
-    </p>
+    <div class="section">
+        <h2>Gameplay</h2>
+        <h3>Dealing</h3>
+        <p>The dealer shuffles and deals 13 cards to each player.</p>
 
     <br />
 
     <h3>Starting the Play</h3>
     <p>
-        The player with the 3 of Diamonds must start by playing it, either as a
-        single card or in a combination (explained below).
+        The game begins with the player holding the 3 of Diamonds, who must include this 
+        card in their initial play with a valid card combination.
     </p>
 
     <br />
 
     <h3>Playing a Round</h3>
     <p>
-        Players take turns clockwise, trying to play a higher-valued combination
-        than the one played before. Here are the playable combinations:
+        Play proceeds clockwise. Plays must either play a higher-ranking card combination than 
+        the previous player or pass. The number of cards played each round is dependent on the 
+        number of cards played by the previous player (either 1, 2, or 5 cards) and must be higher 
+        ranked than the previously played cards.
     </p>
     <ul>
-        <li>Single Card: One card, higher than the previous single.</li>
-        <li>Pair: Two cards of the same rank (e.g., two 10s).</li>
         <li>
-            Straight: Five consecutive cards of any suit (e.g., 3, 4, 5, 6, 7 of
-            mixed suits).
+            Single Card: One card to be played. The single card play must outrank the previously 
+            played card. If cards are of the same rank, the suit determines the stronger card, following the suit order.
         </li>
-        <li>Flush: Five cards of the same suit (e.g., all Diamonds).</li>
+
         <li>
-            Full House: Three cards of the same rank and a pair (e.g., three Jacks
-            and two 5s).
+            Pair: This involves two cards of identical rank. Cards will be compared by their ranks first. 
+            When comparing pairs of the same rank, the higher suit in one of the cards makes the pair 
+            stronger. For example, a pair including a Spade is stronger than the same pair without a Spade.
         </li>
+
         <li>
-            Quads (Four of a kind): Four cards of the same rank (e.g., four
-            Queens).
+            Straight: A sequence of five cards regardless of suit. They are first compared using their 
+            overall range If one Straight starts with a higher card than the other (e.g. 6-7-8-9-10 vs. 
+            5-6-7-8-9), it is considered stronger because its range begins higher. If both Straights have 
+            the same range, then the highest card in each Straight is compared to determine the strong Straight.
         </li>
+
+        <li>Flush: Five cards of the same suit, not necessarily in sequential order. 
+            The first criterion for comparing two Flushes is their suit, where a flush in a 
+            higher-ranking suit is automatically stronger than one in a lower-ranked suit. 
+            If two Flushes are of the same suit, their strength is then compared based on the 
+            highest card in each Flush.
+        </li>
+
         <li>
-            Straight Flush: Five consecutive cards of the same suit (e.g., 10, J,
-            Q, K, A of Hearts).
+            Full House: Combination of five cards consisting of a Three-of-a-Kind and a Pair. 
+            The primary factor for comparing is the rank of the Three-of-a-Kind. The Full House 
+            with the higher-ranking Three-of-a-Kind is considered stronger. 
+        </li>
+
+        <li>
+            Quads (Four of a kind): Four cards of the same rank accompanied by any fifth card to be 
+            played. The strength of Quads is compared based on the rank of the four identical cards. 
+        </li>
+
+        <li>
+            Straight Flush: Consists of five cards in sequential order, all of the same suit. 
+            The order of comparison is the same as comparing two Straights.If the range of the two 
+            straight flushes are the same, we compare the strength of the flushes.
         </li>
     </ul>
 
@@ -117,17 +142,16 @@
 
     <h3>Passing</h3>
     <p>
-        If a player cannot play a higher-valued combination, they can choose to
-        "pass", indicating their inability to proceed.
+        If a player cannot play a higher-valued combination, they can choose to "pass".
     </p>
 
     <br />
 
     <h3>The "3 Pass" Rule</h3>
     <p>
-        If three consecutive players pass, the last player who played a valid
-        combination gains control. They can start a new round by playing any
-        valid combination of their choice.
+        If three consecutive players pass, the last player who played a valid combination gains 
+        control of the board. They can start a new round by playing any valid combination of their 
+        choice.
     </p>
 
     <br />
