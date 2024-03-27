@@ -78,3 +78,7 @@ Navigate to the project directory and run the `compile.bat` script:
 After compilation, start the game using the `run.bat` script
 
 ---
+
+## UML Diagram
+
+![UML Diagram](images/UMLDiagram.png)

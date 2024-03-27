@@ -10,7 +10,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * Represents the top panel in the game UI, displaying player information and providing an exit button.
+ * Represents the top panel in the game UI, displaying player information and 
+ * providing an exit button.
  */
 public class TopPanel extends JPanel {
     private static final Color BACKGROUND_COLOR = new Color(0x085318); // The color of the poker table

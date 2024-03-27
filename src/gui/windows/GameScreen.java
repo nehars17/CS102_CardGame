@@ -65,7 +65,8 @@ public class GameScreen extends JFrame {
     }
 
     /**
-     * Lays out the components on the game screen, including player hands and the central play area.
+     * Lays out the components on the game screen, including player hands and the central 
+     * play area.
      */
     private void layoutComponents() {
         northHand = new TopPanel(this);
