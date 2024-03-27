@@ -40,26 +40,42 @@ Diamonds, Clubs, Hearts, Spades
 
 ### Gameplay:
 
-1. Dealing: The dealer shuffles and deals 13 cards face to each player.
+1. **Dealing:**
+The dealer shuffles and deals 13 cards to each player.
 
-2. Starting the Play: The player with the 3 of diamonds begins the game by playing a valid card combination (detailed below), which must include the 3 of diamonds.
+2. **Starting the Play:** 
+The game begins with the player holding the 3 of Diamonds, who must include this card in their initial play with a valid card combination
 
-3. Playing a Round: Players take turns clockwise, trying to play a higher-valued combination than the one played before. Here are the playable combinations:
+3. **Playing a Round:** 
+    - Play proceeds clockwise
+    - Plays must either play a higher-ranking card combination than the previous player or pass
+    - The number of cards played each round is dependent on the number of cards played by the previous player (either 1, 2, or 5 cards) and must be higher ranked than the previously played cards
 
-- Single Card: One card, higher than the previous single
-- Pair: Two cards of the same rank (e.g., two 10s)
-- Straight: Five consecutive cards of any suit (e.g., 3, 4, 5, 6, 7 of mixed suits)
-- Flush: Five cards of the same suit (e.g., all Diamonds). 
- -Full House: Three cards of the same rank and a pair (e.g., three Jacks and two 5s).
-- Quads (Four of a kind): Four cards of the same rank (e.g., four Queens).
-- Straight Flush: Five consecutive cards of the same suit (e.g., 10, J, Q, K, A of Hearts).
+4. **Card Combinations:**
+    - **Single Card:** One card to be played. The single card play must outrank the previously played card. If cards are of the same rank, the suit determines the stronger card, following the suit order.
 
 
-4. Passing: If a player cannot play a higher-valued combination, they can choose to "pass".
+    - **Pair:** This involves two cards of identical rank. Cards will be compared by their ranks first. When comparing pairs of the same rank, the higher suit in one of the cards makes the pair stronger. For example, a pair including a Spade is stronger than the same pair without a Spade.
 
-5. The "3 Pass" Rule:  If three consecutive players pass, the last player who played a valid combination gains control. They can start a new round by playing any valid combination of their choice.
+    - **Straight:** A sequence of five cards regardless of suit. They are first compared using their overall range If one Straight starts with a higher card than the other (e.g. 6-7-8-9-10 vs. 5-6-7-8-9), it is considered stronger because its range begins higher. If both Straights have the same range, then the highest card in each Straight is compared to determine the strong Straight.
 
-6. Winning the Round: The first player to discard all their cards wins the round.  
+    - **Flush:** Five cards of the same suit, not necessarily in sequential order. The first criterion for comparing two Flushes is their suit, where a flush in a higher-ranking suit is automatically stronger than one in a lower-ranked suit. If two Flushes are of the same suit, their strength is then compared based on the highest card in each Flush.
+
+    - **Full House:** Combination of five cards consisting of a Three-of-a-Kind and a Pair.The primary factor for comparing is the rank of the Three-of-a-Kind. The Full House with the higher-ranking Three-of-a-Kind is considered stronger. 
+
+    - **Quads (Four of a kind):** Four cards of the same rank accompanied by any fifth card to be played. The strength of Quads is compared based on the rank of the four identical cards. 
+
+    - **Straight Flush:** Consists of five cards in sequential order, all of the same suit. The order of comparison is the same as comparing two Straights.If the range of the two straight flushes are the same, we compare the strength of the flushes.
+
+5. Passing:  
+If a player cannot play a higher-valued combination, they can choose to "pass".
+
+6. The "3 Pass" Rule:  
+If three consecutive players pass, the last player who played a valid combination gains control of the board. They can start a new round by playing any valid combination of their choice.
+
+7. Winning the Round:  
+The first player to discard all their cards wins the round.
+
 
 ---
 
