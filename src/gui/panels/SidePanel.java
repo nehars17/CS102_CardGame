@@ -79,15 +79,26 @@ public class SidePanel extends JPanel {
     public void updateCardBacks(int sizeOfPlayersHand) {
         backOfCardPanel.removeAll();
         constraints.gridx = 0;
-        constraints.weighty = 2;
-
+        constraints.gridy = 0; 
+    
+        // Decide the overlap value based on the panel size and the number of cards
+        int overlapValue = PANEL_HEIGHT / (sizeOfPlayersHand / 3);
+    
         for (int i = 0; i < sizeOfPlayersHand; i++) {
-            constraints.gridy = i;
+            // Calculate the inset for the current card. Each subsequent card is moved less upwards.
+            int insetTop = i * overlapValue;
+    
+            // Set the insets for each card - we only adjust the top inset.
+
+            constraints.insets = new Insets(insetTop, 0, 0, 0);
+            
             RotatedLabel cardBack = new RotatedLabel(DisplayCard.getCardBack(), rotationAngle);
             backOfCardPanel.add(cardBack, constraints);
         }
-
+    
         backOfCardPanel.revalidate();
         backOfCardPanel.repaint();
     }
+    
+    
 }
