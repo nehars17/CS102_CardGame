@@ -41,7 +41,6 @@ public class WaitingScreen extends JOptionPane {
 
         String[] options = { "Ready" };
 
-
         /*
          * Create an icon to display in the option pane.
          */

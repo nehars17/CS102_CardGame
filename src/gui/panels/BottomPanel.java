@@ -40,8 +40,7 @@ public class BottomPanel extends JPanel {
         toPlayArea = new ToPlayArea();
         handArea = new HandArea();
 
-        JPanel formatCardPanels = new JPanel(new GridLayout(2, 1)); // gridlayout of 2 rows 1 col to stack playArea and
-                                                                    // handArea
+        JPanel formatCardPanels = new JPanel(new GridLayout(2, 1)); // gridlayout of 2 rows 1 col to stack playArea and handArea
         formatCardPanels.setBackground(emptyPanelColor);
         formatCardPanels.add(toPlayArea);
         formatCardPanels.add(handArea);

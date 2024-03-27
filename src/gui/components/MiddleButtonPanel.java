@@ -14,8 +14,7 @@ public class MiddleButtonPanel extends JPanel {
     private JButton playButton;
     private JButton passButton;
 
-    private final static int hexColor = 0x085318; // The color of the poker table
-    private final static Color backgroundColor = new Color(hexColor);
+    private final static Color backgroundColor = new Color(0x085318); // The color of the poker table
 
     /**
      * Constructs a MiddleButtonPanel, initializing its layout and background color.

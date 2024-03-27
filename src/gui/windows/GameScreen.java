@@ -79,8 +79,8 @@ public class GameScreen extends JFrame {
         centerPanel = new MiddlePanel(game, this);
         this.add(centerPanel, BorderLayout.CENTER);
 
-        leftPanel = new SidePanel(270); // Rotate 270 degrees for left side
-        rightPanel = new SidePanel(90); // Rotate 90 degrees for right side
+        leftPanel = new SidePanel(270); // Components need to be rotated 90 degrees for right side, 270 degrees for left side
+        rightPanel = new SidePanel(90); 
         this.add(leftPanel, BorderLayout.WEST);
         this.add(rightPanel, BorderLayout.EAST);
     }

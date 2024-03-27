@@ -1,6 +1,7 @@
 package gui.windows;
 
 import controller.GameControl;
+import gui.components.ImageComponent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +30,7 @@ public class WinningScreen extends JOptionPane {
         String[] options = {"Play Again", "Quit"};
 
         // Load the icon to be used in the dialog
-        Icon icon = loadIcon("images/winning.png", 40, 40);
+        ImageIcon icon = new ImageComponent("images/winning.png",40,40);
 
         // Show the option dialog and capture the user's choice
         int choice = showOptionDialog(frame, 
@@ -50,24 +51,6 @@ public class WinningScreen extends JOptionPane {
             new GameScreen(new GameControl()); // Restart the game
         } else {
             System.exit(0); // Exit the application
-        }
-    }
-    
-    /**
-     * Loads an image icon from a specified path and resizes it.
-     * 
-     * @param path The path to the image file.
-     * @param width The desired width of the icon.
-     * @param height The desired height of the icon.
-     * @return An ImageIcon object, or null if the image could not be loaded.
-     */
-    private Icon loadIcon(String path, int width, int height) {
-        try {
-            Image img = new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-            return new ImageIcon(img);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
         }
     }
 }

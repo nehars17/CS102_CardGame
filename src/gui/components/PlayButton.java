@@ -21,6 +21,8 @@ public class PlayButton extends JButton {
     private final String assetPath = "images/playcards.jpg";
     private final int imageHeight = 70;
     private final int imageWidth = 70;
+    private ToPlayArea toPlayArea;
+    private JPanel displayPanel;
 
     /**
      * Constructs a PlayButton, initializing its appearance and behavior.
@@ -33,6 +35,9 @@ public class PlayButton extends JButton {
      */
 
     public PlayButton(GameControl game, JPanel displayPanel, ToPlayArea toPlayArea, GameScreen gameFrame) {
+
+        this.displayPanel = displayPanel;
+        this.toPlayArea = toPlayArea;
 
         this.setText("Play");
         this.setFont(new Font("Roboto", Font.BOLD, 20));
@@ -47,11 +52,14 @@ public class PlayButton extends JButton {
         this.setBackground(buttonColor);
         this.setBorder(BorderFactory.createRaisedSoftBevelBorder());
 
+        /* 
+         * Actionlistener checks for the state of the play button being pressed
+         * Implements the logic of the game and the corresponding necessary GUI updating 
+         * 
+         */
+
         this.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-                // System.out.println(toPlayArea.getCards());
-                // System.out.println(game.isPlayable(toPlayArea.getCards()));
 
                 if (game.isPlayable(toPlayArea.getCards())) {
 
@@ -62,19 +70,7 @@ public class PlayButton extends JButton {
                         return;
                     }
 
-                    ArrayList<DisplayCard> toadd = new ArrayList<DisplayCard>();
-
-                    for (Card card : toPlayArea.getCards()) {
-                        DisplayCard cardToAdd = new DisplayCard(card);
-                        toadd.add(cardToAdd);
-                    }
-                    displayPanel.removeAll();
-                    displayPanel.repaint();
-
-                    // grab cardface image and display
-                    for (DisplayCard cardGraphic : toadd) {
-                        displayPanel.add(cardGraphic);
-                    }
+                    updateMiddlePile();
 
                     game.gotoNextPlayer();
                     gameFrame.updateToNextPlayer();
@@ -87,5 +83,20 @@ public class PlayButton extends JButton {
 
             }
         });
+    }
+
+    private void updateMiddlePile(){
+        ArrayList<DisplayCard> toadd = new ArrayList<DisplayCard>();
+
+        for (Card card : toPlayArea.getCards()) {
+            DisplayCard cardToAdd = new DisplayCard(card);
+            toadd.add(cardToAdd);
+        }
+        displayPanel.removeAll();
+        displayPanel.repaint();
+
+        for (DisplayCard cardGraphic : toadd) {
+            displayPanel.add(cardGraphic);
+        }
     }
 }

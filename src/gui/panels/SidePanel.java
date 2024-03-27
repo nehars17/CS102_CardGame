@@ -48,7 +48,7 @@ public class SidePanel extends JPanel {
     }
 
     /**
-     * Adds components to the panel based on the rotation angle.
+     * Adds components to the panel based on the rotation angle. If panel is on the left side, put the label on left side of the panel
      */
     private void addComponentsToLayout() {
         if (rotationAngle == 90) {
