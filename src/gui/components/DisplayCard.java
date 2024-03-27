@@ -41,4 +41,8 @@ public class DisplayCard extends JLabel {
         return new ImageComponent(cardBackPath, sideCardBackWidth, sideCardBackHeight);
     }
 
+    public static int getCardBackWidth(){
+        return sideCardBackWidth;
+    }
+
 }

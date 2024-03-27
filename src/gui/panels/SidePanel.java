@@ -13,10 +13,9 @@ import java.awt.*;
  */
 
 public class SidePanel extends JPanel {
-    private static final int PANEL_WIDTH = 180;
-    private static final int PANEL_HEIGHT = 100;
+    
     private static final Color BACKGROUND_COLOR = new Color(0x085318); // The color of the poker table
-
+    
     private final int rotationAngle;
     private final JPanel backOfCardPanel;
     private final RotatedLabel rotatedLabel;
@@ -31,7 +30,7 @@ public class SidePanel extends JPanel {
         this.rotationAngle = rotationAngle;
         this.setLayout(new BorderLayout());
         this.setBackground(BACKGROUND_COLOR);
-        this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        // this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
 
         rotatedLabel = new RotatedLabel("Player", rotationAngle);
         configureRotatedLabel();
@@ -80,9 +79,11 @@ public class SidePanel extends JPanel {
         backOfCardPanel.removeAll();
         constraints.gridx = 0;
         constraints.gridy = 0; 
+        constraints.anchor = GridBagConstraints.NORTH;
     
-        // Decide the overlap value based on the panel size and the number of cards
-        int overlapValue = PANEL_HEIGHT / (sizeOfPlayersHand / 3);
+        // Decide the overlap value based on the card size
+        int overlapValue = DisplayCard.getCardBackWidth() / 2;
+
     
         for (int i = 0; i < sizeOfPlayersHand; i++) {
             // Calculate the inset for the current card. Each subsequent card is moved less upwards.

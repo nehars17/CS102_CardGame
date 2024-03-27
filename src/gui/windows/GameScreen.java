@@ -116,6 +116,9 @@ public class GameScreen extends JFrame {
         rightPanel.updateCardBacks(cardCount.get(rightPlayer));
         northHand.updateCardBacks(cardCount.get(northPlayer));
 
+        leftPanel.setVisible(true);
+        rightPanel.setVisible(true);
+
         this.revalidate();
     }
 
@@ -126,7 +129,7 @@ public class GameScreen extends JFrame {
         ArrayList<Card> cardsToLoad = game.getCurrentPlayerHand();
         JPanel hand = southHand.getHandArea();
         hand.removeAll(); // Clear the hand area before adding new cards
-        
+
         for (Card card : cardsToLoad) {
             ClickableCard cardButton = new ClickableCard(this, card, hand, southHand.getToPlayArea());
             hand.add(cardButton);
