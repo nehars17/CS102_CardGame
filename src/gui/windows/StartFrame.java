@@ -86,8 +86,11 @@ public class StartFrame extends JFrame {
             ImageComponent resizedIcon = new ImageComponent("images/play.jpg", 50, 50);
             startButton.setIcon(resizedIcon);
 
+            startButton.setVerticalAlignment(JButton.CENTER);
+            startButton.setHorizontalAlignment(JButton.RIGHT);
             startButton.setHorizontalTextPosition(JButton.LEFT);
             startButton.setVerticalTextPosition(JButton.CENTER);
+            
             startButton.setBackground(Color.WHITE);
             startButton.setFocusable(false);
             startButton.setBorder(BorderFactory.createRaisedSoftBevelBorder());
@@ -141,7 +144,7 @@ public class StartFrame extends JFrame {
      * event handling to display game rules to the user.
      */
     private void createHelpButton() {
-        helpButton = new JButton("Help");
+        helpButton = new JButton("Help      ");
         helpButton.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
         helpButton.setFont(new Font("Roboto", Font.BOLD, 20));
         helpButton.setForeground(Color.RED);
