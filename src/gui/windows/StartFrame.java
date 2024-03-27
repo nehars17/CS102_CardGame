@@ -112,7 +112,7 @@ public class StartFrame extends JFrame {
      */
     private void createExitButton() {
         try {
-            exitButton = new JButton("Exit Game");
+            exitButton = new JButton("Exit Game  ");
             exitButton.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
             exitButton.setFont(new Font("Roboto", Font.BOLD, 20));
             exitButton.setForeground(Color.RED);
