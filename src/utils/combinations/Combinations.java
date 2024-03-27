@@ -48,24 +48,6 @@ public class Combinations {
     }
 
     /**
-     * Gets the top card of the current card list.
-     *
-     * @return The top card of the current card list.
-     */
-    public Card getTopCard() {
-        return cardList.get(0);
-    }
-
-    /**
-     * Gets the number of cards in the card list.
-     *
-     * @return The size of the card list.
-     */
-    public int getNumOfCards() {
-        return cardList.size();
-    }
-
-    /**
      * Counts the occurrences of each rank within a list of cards.
      *
      * @param cardList The list of cards whose ranks are to be counted.

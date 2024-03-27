@@ -1,4 +1,4 @@
-# Big 2 Card Game (G1T6)
+# Big Two Card Game (G1T6)
 
 ![BigTwo Banner](images/BigTwoBanner.png)
 

@@ -181,7 +181,7 @@ public class StartFrame extends JFrame {
                 // Read the HTML content from the file and set it to the JEditorPane
                 try {
                     // Assuming rules.html is in the project directory
-                    File htmlFile = new File("../src/textassets/rules.html");
+                    File htmlFile = new File("src/textassets/rules.html");
                     editorPane.setPage(htmlFile.toURI().toURL());
                 } catch (IOException ex) {
                     ex.printStackTrace();
