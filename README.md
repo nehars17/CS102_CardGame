@@ -1,6 +1,4 @@
-# Big2 Card Game Implementation 
-
-## Group 1 Team 6
+# Big 2 Card Game (G1T6)
 
 ![BigTwo Banner](images/BigTwoBanner.png)
 
