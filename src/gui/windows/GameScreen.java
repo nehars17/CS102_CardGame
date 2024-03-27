@@ -28,7 +28,7 @@ public class GameScreen extends JFrame {
     // Panels for displaying different aspects of the game
     private TopPanel northHand;
     private BottomPanel southHand;
-    private JPanel centerPanel;
+    private MiddlePanel centerPanel;
     private SidePanel leftPanel;
     private SidePanel rightPanel;
 
@@ -84,13 +84,15 @@ public class GameScreen extends JFrame {
         this.add(rightPanel, BorderLayout.EAST);
     }
 
-    /**
-     * Updates the game UI to reflect the next player's turn.
+    /*
+     * Updates the game UI to reflect the next player's turn. 
      */
     public void updateToNextPlayer() {
         clearPlayerArea();
         updateSidePanels();
         updatePlayerHand();
+        updateIfNewRound();
+
     }
 
     /**
@@ -130,7 +132,7 @@ public class GameScreen extends JFrame {
         }
 
         this.revalidate();
-        this.repaint(); // Ensure the hand area is correctly repainted after adding new cards
+        this.repaint();
     }
 
     /**
@@ -144,6 +146,23 @@ public class GameScreen extends JFrame {
         hand.repaint();
         playArea.repaint();
         this.revalidate();
+    }
+
+    /*
+     * Function call to update the middle panel to inform the player if it is a new round
+     */
+
+    public void updateIfNewRound(){
+        if (!game.playerAllowedToPass()){
+            JPanel middlePile = centerPanel.getMiddlePile();
+            middlePile.removeAll();
+
+            JLabel informPlayer = new JLabel("All other players have passed, new round started.");
+            informPlayer.setFont(new Font ("Roboto", Font.BOLD, 20));
+            informPlayer.setForeground(Color.WHITE);
+
+            middlePile.add(informPlayer);
+        }
     }
 
     /**

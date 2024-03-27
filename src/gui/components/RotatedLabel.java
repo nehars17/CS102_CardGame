@@ -29,6 +29,7 @@ public class RotatedLabel extends JLabel {
      */
     public RotatedLabel(ImageComponent cardBack, double angleDegrees) {
         super(cardBack);
+        setPreferredSize( new Dimension (cardBack.getIconHeight(), cardBack.getIconWidth()));
         this.angleDegrees = angleDegrees;
     
     }

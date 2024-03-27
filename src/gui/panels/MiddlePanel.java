@@ -54,4 +54,12 @@ public class MiddlePanel extends JPanel {
     private void initializeButtonPanel(GameControl game, GameScreen gameScreen) {
         buttonPanel = new MiddleButtonPanel(game, gameScreen, middlePile);
     }
+
+
+    /*
+     *  Used to update panel when new round begins.
+     */
+    public JPanel getMiddlePile(){
+        return middlePile;
+    }
 }

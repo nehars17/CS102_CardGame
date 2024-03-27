@@ -10,8 +10,10 @@ import javax.swing.*;
 
 public class DisplayCard extends JLabel {
     private static final String cardBackPath = "images/cardassets/cardback.png";
-    private static final int cardBackWidth = 73;
-    private static final int cardBackHeight = 97;
+    private static final int cardBackWidth = 71;
+    private static final int cardBackHeight = 103;
+    private static final int sideCardBackWidth = 50;
+    private static final int sideCardBackHeight = 73;
 
     /**
      * Constructs a DisplayCard component with the specified card.
@@ -30,13 +32,13 @@ public class DisplayCard extends JLabel {
     }
 
     /**
-     * Returns a DisplayCard component with the specified card.
+     * Returns a  ImageComponent with the specified card. Used specifically to add to rotated panels
      *
      * @param card The card object to display.
-     * @return A DisplayCard component with the specified card.
+     * @return A ImageComponent with the specified card.
      */
     public static ImageComponent getCardBack() {
-        return new ImageComponent(cardBackPath, cardBackWidth, cardBackHeight);
+        return new ImageComponent(cardBackPath, sideCardBackWidth, sideCardBackHeight);
     }
 
 }

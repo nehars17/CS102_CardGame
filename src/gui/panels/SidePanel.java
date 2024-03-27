@@ -36,7 +36,7 @@ public class SidePanel extends JPanel {
         rotatedLabel = new RotatedLabel("Player", rotationAngle);
         configureRotatedLabel();
 
-        backOfCardPanel = new JPanel(new GridBagLayout());
+        backOfCardPanel = new JPanel(new GridBagLayout()); //backOfCardPanel = new JPanel(new GridBagLayout());
         backOfCardPanel.setBackground(BACKGROUND_COLOR);
 
         addComponentsToLayout();
@@ -79,7 +79,8 @@ public class SidePanel extends JPanel {
     public void updateCardBacks(int sizeOfPlayersHand) {
         backOfCardPanel.removeAll();
         constraints.gridx = 0;
-        constraints.weighty = 0.01;
+        constraints.weighty = 0.1;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
 
         for (int i = 0; i < sizeOfPlayersHand; i++) {
             constraints.gridy = i;

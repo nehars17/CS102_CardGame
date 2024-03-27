@@ -62,8 +62,6 @@ public class PlayButton extends JButton {
                         return;
                     }
 
-                    // JOptionPane transitionScreen = new WaitingScreen(gameFrame);
-
                     ArrayList<DisplayCard> toadd = new ArrayList<DisplayCard>();
 
                     for (Card card : toPlayArea.getCards()) {
