@@ -23,19 +23,19 @@ In this project, we've created a digital version of the beloved card game, Big T
 
 ## Game rules:
 
-Objective: 
+**Objective:**  
 Be the first player to discard all your cards.
 
-Players: 
+**Players:**  
 The game can be played by 4 players.
 
-Dealing Cards: 
+**Dealing Cards:**  
 Each player is dealt 13 cards.
 
-Card Ranking (Low to High):
+**Card Ranking (Low to High):**  
 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A, 2
 
-Suit Ranking (Low to High):
+**Suit Ranking (Low to High):**  
 Diamonds, Clubs, Hearts, Spades  
 
 ### Gameplay:
@@ -67,13 +67,13 @@ The game begins with the player holding the 3 of Diamonds, who must include this
 
     - **Straight Flush:** Consists of five cards in sequential order, all of the same suit. The order of comparison is the same as comparing two Straights.If the range of the two straight flushes are the same, we compare the strength of the flushes.
 
-5. Passing:  
+5. **Passing:**  
 If a player cannot play a higher-valued combination, they can choose to "pass".
 
-6. The "3 Pass" Rule:  
+6. **The "3 Pass" Rule:**  
 If three consecutive players pass, the last player who played a valid combination gains control of the board. They can start a new round by playing any valid combination of their choice.
 
-7. Winning the Round:  
+7. **Winning the Round:**  
 The first player to discard all their cards wins the round.
 
 
