@@ -14,13 +14,12 @@ import java.awt.event.MouseEvent;
  */
 public class TopPanel extends JPanel {
     private static final Color BACKGROUND_COLOR = new Color(0x085318); // The color of the poker table
-    private static final int BORDER_WIDTH = 100;
+    private static final int BORDER_WIDTH = 80;
     private static final int BORDER_HEIGHT = 100;
 
     private JButton exitGameButton;
     private JLabel playerLabel;
-    private JPanel cardPanel = new JPanel(new GridBagLayout());
-    private GridBagConstraints constraints = new GridBagConstraints();
+    private JPanel cardPanel = new JPanel(new FlowLayout());
 
     private JFrame gameScreen;
 
@@ -139,15 +138,10 @@ public class TopPanel extends JPanel {
      */
     public void updateCardBacks(int sizeOfPlayersHand) {
         cardPanel.removeAll();
-
-        constraints.gridy = 1;
-        constraints.weightx = 0.1;
-
         for (int i = 0; i < sizeOfPlayersHand; i++) {
 
-            constraints.gridx = i;
             DisplayCard cardBack = new DisplayCard();
-            cardPanel.add(cardBack, constraints);
+            cardPanel.add(cardBack);
         }
 
         cardPanel.revalidate();
