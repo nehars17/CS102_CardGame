@@ -13,9 +13,8 @@ import java.awt.*;
  */
 
 public class SidePanel extends JPanel {
-    
     private static final Color BACKGROUND_COLOR = new Color(0x085318); // The color of the poker table
-    
+
     private final int rotationAngle;
     private final JPanel backOfCardPanel;
     private final RotatedLabel rotatedLabel;
@@ -30,8 +29,7 @@ public class SidePanel extends JPanel {
         this.rotationAngle = rotationAngle;
         this.setLayout(new BorderLayout());
         this.setBackground(BACKGROUND_COLOR);
-        // this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
-
+        
         rotatedLabel = new RotatedLabel("Player", rotationAngle);
         configureRotatedLabel();
 
