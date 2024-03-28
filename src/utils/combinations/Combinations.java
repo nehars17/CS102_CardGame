@@ -84,6 +84,10 @@ public class Combinations {
             return false;
         }
 
+        if (determineType(cardsToPlay).equals("Invalid Combination")) {
+            return false;
+        }
+
         return true;
     }
 
